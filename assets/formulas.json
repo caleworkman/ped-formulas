@@ -1,0 +1,1489 @@
+{
+    "version": 0.1,
+    "formulas": [
+        {
+            "uuid": "c4b8056c-d3c1-4230-84ad-5c6b68b04fdf",
+            "brand": "ABBOTT Similac",
+            "name": "Advance",
+            "details": {
+                "g_protein_per_100_cal": 2.07,
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.6,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 518.0,
+                    "g": 100.0,
+                    "displacement": 76.0
+                },
+                "tbsp": {
+                    "calories": 32.4,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.8,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "dec3d4b4-4997-4fd4-9d68-2f1e0a9c8240",
+            "brand": "ABBOTT Similac",
+            "name": "360 Total Care/ProAdvance",
+            "details": {
+                "g_protein_per_100_cal": 2.07,
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.6,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 517.0,
+                    "g": 100.0,
+                    "displacement": 77.0
+                },
+                "tbsp": {
+                    "calories": 32.3,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.8,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "c5bab81a-4d52-4dd5-a8d8-a6a12d37013a",
+            "brand": "ABBOTT Similac",
+            "name": "Organic/A2",
+            "details": {
+                "g_protein_per_100_cal": 2.07,
+                "scoop": {
+                    "calories": 44.7,
+                    "g": 8.6,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 520.0,
+                    "g": 100.0,
+                    "displacement": 77.0
+                },
+                "tbsp": {
+                    "calories": 32.5,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.8,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "11d5c951-6ac8-4f6e-860e-9daedfdf1f7b",
+            "brand": "ABBOTT Similac",
+            "name": "Alimentum (SE)",
+            "details": {
+                "g_protein_per_100_cal": 2.75,
+                "scoop": {
+                    "calories": 44.3,
+                    "g": 8.7,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 509.0,
+                    "g": 100.0,
+                    "displacement": 76.0
+                },
+                "tbsp": {
+                    "calories": 31.8,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "fa7b238c-3777-4ab8-92f0-6c3ba87e3594",
+            "brand": "ABBOTT Similac",
+            "name": "Neosure",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 49.3,
+                    "g": 9.6,
+                    "displacement": 7.3
+                },
+                "cup": {
+                    "calories": 513.0,
+                    "g": 100.0,
+                    "displacement": 76.0
+                },
+                "tbsp": {
+                    "calories": 32.1,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.7,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "f6d88151-d09e-43c9-8898-9ed77189d39f",
+            "brand": "ABBOTT Similac",
+            "name": "Spit up (Not rec'd >24k/oz)",
+            "details": {
+                "g_protein_per_100_cal": 2.1,
+                "scoop": {
+                    "calories": 44.6,
+                    "g": 8.8,
+                    "displacement": 6.9
+                },
+                "cup": {
+                    "calories": 507.0,
+                    "g": 100.0,
+                    "displacement": 78.0
+                },
+                "tbsp": {
+                    "calories": 31.7,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "55519720-3625-47d9-abd0-a90cd398e9b3",
+            "brand": "ABBOTT Similac",
+            "name": "PM 60/40 (lower mineral)",
+            "details": {
+                "g_protein_per_100_cal": 2.2,
+                "scoop": {
+                    "calories": 44.7,
+                    "g": 8.7,
+                    "displacement": 6.9
+                },
+                "cup": {
+                    "calories": 514.0,
+                    "g": 100.0,
+                    "displacement": 79.0
+                },
+                "tbsp": {
+                    "calories": 32.1,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.7,
+                    "g": 2.1,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "88c7f918-8064-4e88-862c-ef6bd2c15643",
+            "brand": "ABBOTT Similac",
+            "name": "Pro sensitive",
+            "details": {
+                "g_protein_per_100_cal": 2.1,
+                "scoop": {
+                    "calories": 44.7,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 508.0,
+                    "g": 100.0,
+                    "displacement": 78.0
+                },
+                "tbsp": {
+                    "calories": 31.8,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "ded7bd37-5312-402c-81e5-ef9d90e9a22b",
+            "brand": "ABBOTT Similac",
+            "name": "Isomil",
+            "details": {
+                "g_protein_per_100_cal": 2.45,
+                "scoop": {
+                    "calories": 44.9,
+                    "g": 8.8,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": 510.0,
+                    "g": 100.0,
+                    "displacement": 77.0
+                },
+                "tbsp": {
+                    "calories": 31.9,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "e149cdad-402f-4321-828d-781ebdc51d29",
+            "brand": "ABBOTT Similac",
+            "name": "Total Comfort",
+            "details": {
+                "g_protein_per_100_cal": 2.32,
+                "scoop": {
+                    "calories": 42.5,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 506.0,
+                    "g": 100.0,
+                    "displacement": 77.0
+                },
+                "tbsp": {
+                    "calories": 31.6,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.5,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "410d71dc-420b-49cb-9bb8-6c99be5e0d4d",
+            "brand": "ABBOTT Similac",
+            "name": "Pro Total Comfort",
+            "details": {
+                "g_protein_per_100_cal": 2.32,
+                "scoop": {
+                    "calories": 42.5,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 506.0,
+                    "g": 100.0,
+                    "displacement": 78.0
+                },
+                "tbsp": {
+                    "calories": 31.6,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.5,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "2221fe22-038a-4695-8131-af2734975d5c",
+            "brand": "ABBOTT Similac",
+            "name": "Pure bliss",
+            "details": {
+                "g_protein_per_100_cal": 2.07,
+                "scoop": {
+                    "calories": 42.3,
+                    "g": 8.3,
+                    "displacement": 6.3
+                },
+                "cup": {
+                    "calories": 510.0,
+                    "g": 100.0,
+                    "displacement": 76.0
+                },
+                "tbsp": {
+                    "calories": 31.9,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "157b85a1-cb58-4412-93bc-b13d86835a6d",
+            "brand": "ABBOTT Similac",
+            "name": "Sensitive",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.8,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 509.0,
+                    "g": 100.0,
+                    "displacement": 78.0
+                },
+                "tbsp": {
+                    "calories": 31.8,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "92329806-6a38-4a3f-a772-d42a31fa2adc",
+            "brand": "ABBOTT Similac",
+            "name": "360 Total Care Sensitive",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.7,
+                    "g": 8.8,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": 508.0,
+                    "g": 100.0,
+                    "displacement": 76.0
+                },
+                "tbsp": {
+                    "calories": 31.8,
+                    "g": 6.3,
+                    "displacement": 4.8
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "954be9e2-383d-4141-8378-ac5fef4871b3",
+            "brand": "ABBOTT Elecare",
+            "name": "Infant",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 44.7,
+                    "g": 9.4,
+                    "displacement": 7.0
+                },
+                "cup": {
+                    "calories": "475kcal (per 100g)",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tbsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                }
+            }
+        },
+        {
+            "uuid": "77547253-67d1-42cd-87db-af553a5bd7b8",
+            "brand": "ABBOTT Elecare",
+            "name": "Junior Unflvr/Van",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 44.6,
+                    "g": 9.5,
+                    "displacement": 7.0
+                },
+                "cup": {
+                    "calories": "469kcal\n(per 100g)",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tbsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                }
+            }
+        },
+        {
+            "uuid": "1c36348b-6573-4c3e-81e2-638993d062b0",
+            "brand": "ABBOTT Elecare",
+            "name": "Junior Banana",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 42.2,
+                    "g": 9.0,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": "469kcal\n(per 100g)",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tbsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                }
+            }
+        },
+        {
+            "uuid": "3bf99297-cd35-4366-a348-272b8da750a2",
+            "brand": "ABBOTT Elecare",
+            "name": "Junior Chocolate",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 41.7,
+                    "g": 8.9,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": "469kcal\n(per 100g)",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tbsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                },
+                "tsp": {
+                    "calories": "X",
+                    "g": "X",
+                    "displacement": "X"
+                }
+            }
+        },
+        {
+            "uuid": "3f858aa7-995d-4cf0-9eec-a12a9fe4741b",
+            "brand": "GERBER Good Start",
+            "name": "Gentle",
+            "details": {
+                "g_protein_per_100_cal": 2.1,
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.7,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 527.4,
+                    "g": 103.0,
+                    "displacement": 78.3
+                },
+                "tbsp": {
+                    "calories": 33.4,
+                    "g": 6.5,
+                    "displacement": 4.95
+                },
+                "tsp": {
+                    "calories": 11.0,
+                    "g": 2.2,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "ae1f1fc6-7736-4034-bda1-bb214a1c3b19",
+            "brand": "GERBER Good Start",
+            "name": "GentlePro",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.7,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 527.4,
+                    "g": 103.0,
+                    "displacement": 78.3
+                },
+                "tbsp": {
+                    "calories": 33.4,
+                    "g": 6.5,
+                    "displacement": 4.95
+                },
+                "tsp": {
+                    "calories": 11.0,
+                    "g": 2.2,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "a69aa11c-c505-43c3-9967-ba11d9a0fe5f",
+            "brand": "GERBER Good Start",
+            "name": "SoothePro",
+            "details": {
+                "g_protein_per_100_cal": 2.1,
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.7,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 527.4,
+                    "g": 103.0,
+                    "displacement": 78.3
+                },
+                "tbsp": {
+                    "calories": 33.4,
+                    "g": 6.5,
+                    "displacement": 4.95
+                },
+                "tsp": {
+                    "calories": 11.0,
+                    "g": 2.2,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "17dfb91b-af67-49af-96dd-a5be2e6e9f09",
+            "brand": "GERBER Good Start",
+            "name": "Gentle Soy",
+            "details": {
+                "g_protein_per_100_cal": 2.5,
+                "scoop": {
+                    "calories": 44.6,
+                    "g": 8.9,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 526.1,
+                    "g": 105.0,
+                    "displacement": 77.7
+                },
+                "tbsp": {
+                    "calories": 33.4,
+                    "g": 6.7,
+                    "displacement": 4.95
+                },
+                "tsp": {
+                    "calories": 11.0,
+                    "g": 2.2,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "f2e7f948-dad7-4976-8fa7-05265618e4de",
+            "brand": "GERBER Good Start",
+            "name": "Extensive HA (SE)",
+            "details": {
+                "g_protein_per_100_cal": 2.6,
+                "scoop": {
+                    "calories": 22.7,
+                    "g": 4.6,
+                    "displacement": 3.3
+                },
+                "cup": {
+                    "calories": 640.9,
+                    "g": 130.0,
+                    "displacement": 93.6
+                },
+                "tbsp": {
+                    "calories": 40.5,
+                    "g": 8.2,
+                    "displacement": 5.89
+                },
+                "tsp": {
+                    "calories": 13.4,
+                    "g": 2.7,
+                    "displacement": 2.0
+                }
+            }
+        },
+        {
+            "uuid": "5976da20-d5d5-48b4-95a9-cbadf154ef44",
+            "brand": "MEAD JOHNSON",
+            "name": "Simply Organic",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": 510.0,
+                    "g": 102.0,
+                    "displacement": 78.5
+                },
+                "tbsp": {
+                    "calories": 31.9,
+                    "g": 6.4,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "f8a5393c-e4fb-4561-be85-a443a3151c32",
+            "brand": "MEAD JOHNSON",
+            "name": "NeuroPro Sensitive",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 8.9,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 540.0,
+                    "g": 108.0,
+                    "displacement": 83.2
+                },
+                "tbsp": {
+                    "calories": 33.8,
+                    "g": 6.8,
+                    "displacement": 5.2
+                },
+                "tsp": {
+                    "calories": 11.3,
+                    "g": 2.3,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "43698790-950b-42c8-9de7-fa7ef3f37ed1",
+            "brand": "MEAD JOHNSON",
+            "name": "Infant/NeuroProInfant",
+            "details": {
+                "g_protein_per_100_cal": 2.0,
+                "scoop": {
+                    "calories": 44.0,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 576.0,
+                    "g": 113.0,
+                    "displacement": 87.0
+                },
+                "tbsp": {
+                    "calories": 36.0,
+                    "g": 7.1,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.0,
+                    "g": 2.4,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "c6cd92b9-a01f-4942-839e-ea2d3960bcc6",
+            "brand": "MEAD JOHNSON",
+            "name": "AR (Not Rec�d >24k/oz)",
+            "details": {
+                "g_protein_per_100_cal": 2.5,
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 9.0,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 485.0,
+                    "g": 97.0,
+                    "displacement": 73.7
+                },
+                "tbsp": {
+                    "calories": 30.3,
+                    "g": 6.1,
+                    "displacement": 4.6
+                },
+                "tsp": {
+                    "calories": 10.1,
+                    "g": 2.0,
+                    "displacement": 1.5
+                }
+            }
+        },
+        {
+            "uuid": "5d12d175-3215-4508-ba51-7fab247e5f26",
+            "brand": "MEAD JOHNSON",
+            "name": "Enspire Gentlease",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.0,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": 545.0,
+                    "g": 107.0,
+                    "displacement": 82.4
+                },
+                "tbsp": {
+                    "calories": 34.1,
+                    "g": 6.7,
+                    "displacement": 5.2
+                },
+                "tsp": {
+                    "calories": 11.4,
+                    "g": 2.2,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "8b5f3dc0-1361-49c9-9d42-1f31ab2ff178",
+            "brand": "MEAD JOHNSON",
+            "name": "Gentlease/NeuroProGentle",
+            "details": {
+                "g_protein_per_100_cal": 2.3,
+                "scoop": {
+                    "calories": 44.0,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": 566.0,
+                    "g": 111.0,
+                    "displacement": 85.5
+                },
+                "tbsp": {
+                    "calories": 35.4,
+                    "g": 6.9,
+                    "displacement": 5.3
+                },
+                "tsp": {
+                    "calories": 11.8,
+                    "g": 2.3,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "33d3a5a9-80eb-40ea-baea-0d940e7f38eb",
+            "brand": "MEAD JOHNSON",
+            "name": "Enfacare",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 49.0,
+                    "g": 9.8,
+                    "displacement": 7.6
+                },
+                "cup": {
+                    "calories": 535.0,
+                    "g": 107.0,
+                    "displacement": 83.5
+                },
+                "tbsp": {
+                    "calories": 33.4,
+                    "g": 6.7,
+                    "displacement": 5.2
+                },
+                "tsp": {
+                    "calories": 11.2,
+                    "g": 2.2,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "fcea139d-68be-4f66-a154-e78469e13cce",
+            "brand": "MEAD JOHNSON",
+            "name": "Reguline",
+            "details": {
+                "g_protein_per_100_cal": 2.3,
+                "scoop": {
+                    "calories": 44.0,
+                    "g": 8.7,
+                    "displacement": 6.6
+                },
+                "cup": {
+                    "calories": 571.0,
+                    "g": 112.0,
+                    "displacement": 85.1
+                },
+                "tbsp": {
+                    "calories": 35.7,
+                    "g": 7.0,
+                    "displacement": 5.3
+                },
+                "tsp": {
+                    "calories": 11.9,
+                    "g": 2.3,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "aaeae83c-f0c9-4c95-87c2-88f75c20318a",
+            "brand": "MEAD JOHNSON",
+            "name": "Prosobee",
+            "details": {
+                "g_protein_per_100_cal": 2.5,
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 515.0,
+                    "g": 101.0,
+                    "displacement": 77.8
+                },
+                "tbsp": {
+                    "calories": 32.2,
+                    "g": 6.3,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.7,
+                    "g": 2.1,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "f77ee149-ab86-465c-8243-5be662170bf0",
+            "brand": "MEAD JOHNSON",
+            "name": "Nutramigen (SE) ( packed)",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 9.0,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 510.0,
+                    "g": 102.0,
+                    "displacement": 79.6
+                },
+                "tbsp": {
+                    "calories": 31.9,
+                    "g": 6.4,
+                    "displacement": 5.0
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.1,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "0d40683e-4e78-40ad-b09b-886a20dce4d1",
+            "brand": "MEAD JOHNSON",
+            "name": "Enspire",
+            "details": {
+                "g_protein_per_100_cal": 2.1,
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 8.8,
+                    "displacement": 6.8
+                },
+                "cup": {
+                    "calories": 581.0,
+                    "g": 114.0,
+                    "displacement": 87.8
+                },
+                "tbsp": {
+                    "calories": 36.3,
+                    "g": 7.1,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.1,
+                    "g": 2.4,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "6f7e06b2-5a4e-4741-90c3-59bf2c398ee0",
+            "brand": "MEAD JOHNSON",
+            "name": "Portagen (AF)",
+            "details": {
+                "g_protein_per_100_cal": 3.5,
+                "scoop": {
+                    "calories": 44.0,
+                    "g": 9.4,
+                    "displacement": 7.1
+                },
+                "cup": {
+                    "calories": 573.0,
+                    "g": 122.0,
+                    "displacement": 91.5
+                },
+                "tbsp": {
+                    "calories": 35.8,
+                    "g": 7.6,
+                    "displacement": 5.7
+                },
+                "tsp": {
+                    "calories": 12.0,
+                    "g": 2.5,
+                    "displacement": 1.9
+                }
+            }
+        },
+        {
+            "uuid": "a9ac6e3b-6a3e-4cf4-bf7c-6bc2e3879afc",
+            "brand": "MEAD JOHNSON",
+            "name": "Pregestimil (SE) (packed)",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 8.9,
+                    "displacement": 7.0
+                },
+                "cup": {
+                    "calories": 640.0,
+                    "g": 128.0,
+                    "displacement": 99.8
+                },
+                "tbsp": {
+                    "calories": 40.0,
+                    "g": 8.0,
+                    "displacement": 6.2
+                },
+                "tsp": {
+                    "calories": 13.3,
+                    "g": 2.7,
+                    "displacement": 2.1
+                }
+            }
+        },
+        {
+            "uuid": "a7dfbf7e-582a-4ea8-bafe-32a5b29603a4",
+            "brand": "MEAD JOHNSON",
+            "name": "PurAmino (EAA)",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 23.0,
+                    "g": 4.5,
+                    "displacement": 3.5
+                },
+                "cup": {
+                    "calories": 575.0,
+                    "g": 115.0,
+                    "displacement": 88.6
+                },
+                "tbsp": {
+                    "calories": 36.0,
+                    "g": 7.2,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.0,
+                    "g": 2.4,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "0afc0afd-c4a4-4da5-ad52-f85930e60dd0",
+            "brand": "MEAD JOHNSON",
+            "name": "PurAmino Jr",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 33.0,
+                    "g": 6.8,
+                    "displacement": 5.2
+                },
+                "cup": {
+                    "calories": 549.0,
+                    "g": 112.0,
+                    "displacement": 86.2
+                },
+                "tbsp": {
+                    "calories": 34.3,
+                    "g": 7.0,
+                    "displacement": 5.4
+                },
+                "tsp": {
+                    "calories": 11.4,
+                    "g": 2.3,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "10bb8d40-d72e-4640-b987-8841968a68e0",
+            "brand": "MEAD JOHNSON",
+            "name": "Nutramigen Toddler (packed)",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 45.0,
+                    "g": 9.3,
+                    "displacement": 6.9
+                },
+                "cup": {
+                    "calories": 509.0,
+                    "g": 106.0,
+                    "displacement": 78.4
+                },
+                "tbsp": {
+                    "calories": 31.8,
+                    "g": 6.6,
+                    "displacement": 4.9
+                },
+                "tsp": {
+                    "calories": 10.6,
+                    "g": 2.2,
+                    "displacement": 1.6
+                }
+            }
+        },
+        {
+            "uuid": "3a26f1e5-f02c-4583-85bb-d6a9d695ad63",
+            "brand": "NESTLE Alfamino",
+            "name": "Infant (EAA)",
+            "details": {
+                "g_protein_per_100_cal": "2.8 (11%)",
+                "scoop": {
+                    "calories": 23.2,
+                    "g": 4.7,
+                    "displacement": 3.4
+                },
+                "cup": {
+                    "calories": 598.0,
+                    "g": 121.0,
+                    "displacement": 87.1
+                },
+                "tbsp": {
+                    "calories": 37.4,
+                    "g": 7.6,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.5,
+                    "g": 2.5,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "60a774c5-ad28-43bc-8566-da571e5dc854",
+            "brand": "NESTLE Alfamino",
+            "name": "Junior",
+            "details": {
+                "g_protein_per_100_cal": "3.3 (13%)",
+                "scoop": {
+                    "calories": 23.9,
+                    "g": 5.2,
+                    "displacement": 3.8
+                },
+                "cup": {
+                    "calories": 589.0,
+                    "g": 128.0,
+                    "displacement": 93.4
+                },
+                "tbsp": {
+                    "calories": 36.8,
+                    "g": 8.0,
+                    "displacement": 5.9
+                },
+                "tsp": {
+                    "calories": 12.3,
+                    "g": 2.7,
+                    "displacement": 2.0
+                }
+            }
+        },
+        {
+            "uuid": "0550d32b-8579-4ed4-8521-d758a8ca910f",
+            "brand": "NUTRICIA Neocate",
+            "name": "Syneo (EAA)",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 22.33,
+                    "g": 4.7,
+                    "displacement": 3.34
+                },
+                "cup": {
+                    "calories": 617.5,
+                    "g": 130.0,
+                    "displacement": 92.3
+                },
+                "tbsp": {
+                    "calories": 38.5,
+                    "g": 8.1,
+                    "displacement": 5.8
+                },
+                "tsp": {
+                    "calories": 12.8,
+                    "g": 2.7,
+                    "displacement": 1.9
+                }
+            }
+        },
+        {
+            "uuid": "3f28f74e-ce5e-4947-bd4f-b72f925db17f",
+            "brand": "NUTRICIA Neocate",
+            "name": "Infant  (EAA)",
+            "details": {
+                "g_protein_per_100_cal": 2.8,
+                "scoop": {
+                    "calories": 22.22,
+                    "g": 4.6,
+                    "displacement": 3.2
+                },
+                "cup": {
+                    "calories": 608.6,
+                    "g": 126.0,
+                    "displacement": 88.2
+                },
+                "tbsp": {
+                    "calories": 38.0,
+                    "g": 7.9,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.7,
+                    "g": 2.6,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "8544a756-d171-450e-9b72-31034c3395a5",
+            "brand": "NUTRICIA Neocate",
+            "name": "Pepticate",
+            "details": {
+                "g_protein_per_100_cal": 2.4,
+                "scoop": {
+                    "calories": 22.14,
+                    "g": 4.5,
+                    "displacement": 3.33
+                },
+                "cup": {
+                    "calories": 674.0,
+                    "g": 137.0,
+                    "displacement": 101.4
+                },
+                "tbsp": {
+                    "calories": 42.3,
+                    "g": 8.6,
+                    "displacement": 6.4
+                },
+                "tsp": {
+                    "calories": 14.3,
+                    "g": 2.9,
+                    "displacement": 2.15
+                }
+            }
+        },
+        {
+            "uuid": "7ea8d812-179a-4c09-a7a3-9b94b4538e80",
+            "brand": "NUTRICIA Neocate",
+            "name": "Junior Unflavor",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 35.0,
+                    "g": 7.3,
+                    "displacement": 5.0
+                },
+                "cup": {
+                    "calories": 575.0,
+                    "g": 120.0,
+                    "displacement": 82.8
+                },
+                "tbsp": {
+                    "calories": 35.9,
+                    "g": 7.5,
+                    "displacement": 5.2
+                },
+                "tsp": {
+                    "calories": 12.0,
+                    "g": 2.5,
+                    "displacement": 1.7
+                }
+            }
+        },
+        {
+            "uuid": "e340b15f-7a1b-4cc4-8f3d-44604822da41",
+            "brand": "NUTRICIA Neocate",
+            "name": "Jr. Unflavored  PreBio",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 36.3,
+                    "g": 7.7,
+                    "displacement": 5.6
+                },
+                "cup": {
+                    "calories": 609.0,
+                    "g": 129.0,
+                    "displacement": 95.5
+                },
+                "tbsp": {
+                    "calories": 38.1,
+                    "g": 8.1,
+                    "displacement": 6.0
+                },
+                "tsp": {
+                    "calories": 12.7,
+                    "g": 2.7,
+                    "displacement": 2.0
+                }
+            }
+        },
+        {
+            "uuid": "2cd70cc3-db99-4662-8af4-d12e2300c566",
+            "brand": "NUTRICIA Neocate",
+            "name": "Junior Van/Straw",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 34.5,
+                    "g": 7.3,
+                    "displacement": 5.0
+                },
+                "cup": {
+                    "calories": 571.0,
+                    "g": 121.0,
+                    "displacement": 84.7
+                },
+                "tbsp": {
+                    "calories": 35.7,
+                    "g": 7.6,
+                    "displacement": 5.3
+                },
+                "tsp": {
+                    "calories": 11.9,
+                    "g": 2.5,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "21b8aca6-cb29-41f7-bce6-523f9dd41453",
+            "brand": "NUTRICIA Neocate",
+            "name": "Junior Chocolate",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 34.5,
+                    "g": 7.5,
+                    "displacement": 5.3
+                },
+                "cup": {
+                    "calories": 575.0,
+                    "g": 125.0,
+                    "displacement": 87.5
+                },
+                "tbsp": {
+                    "calories": 36.0,
+                    "g": 7.8,
+                    "displacement": 5.5
+                },
+                "tsp": {
+                    "calories": 12.0,
+                    "g": 2.6,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "92e85337-0f8d-4a37-9058-8e11e2774e52",
+            "brand": "NUTRICIA Neocate",
+            "name": "Junior Tropical",
+            "details": {
+                "g_protein_per_100_cal": 3.1,
+                "scoop": {
+                    "calories": 32.9,
+                    "g": 7.3,
+                    "displacement": 5.1
+                },
+                "cup": {
+                    "calories": 545.7,
+                    "g": 121.0,
+                    "displacement": 84.7
+                },
+                "tbsp": {
+                    "calories": 34.1,
+                    "g": 7.6,
+                    "displacement": 5.3
+                },
+                "tsp": {
+                    "calories": 11.4,
+                    "g": 2.5,
+                    "displacement": 1.8
+                }
+            }
+        },
+        {
+            "uuid": "bf376078-9aaa-4db6-8259-29e1704133b8",
+            "brand": "Earth's Best",
+            "name": "Organic DHA",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                },
+                "tbsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": 5.12
+                },
+                "tsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                }
+            }
+        },
+        {
+            "uuid": "c75685e7-3ec5-4332-bd87-9b6a4f443e3d",
+            "brand": "Earth's Best",
+            "name": "Soy NGMO",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.1,
+                    "g": 8.9,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                },
+                "tbsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": 4.96
+                },
+                "tsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                }
+            }
+        },
+        {
+            "uuid": "d7061fa2-99ff-4605-a4a0-7fd0870ac676",
+            "brand": "Earth's Best",
+            "name": "Gentle",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.3,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                },
+                "tbsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": 5.09
+                },
+                "tsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                }
+            }
+        },
+        {
+            "uuid": "34ecf99c-d4d3-4db7-a860-f861055999fe",
+            "brand": "Earth's Best",
+            "name": "Sensitive",
+            "details": {
+                "g_protein_per_100_cal": "",
+                "scoop": {
+                    "calories": 44.5,
+                    "g": 8.7,
+                    "displacement": 6.7
+                },
+                "cup": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                },
+                "tbsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": 5.12
+                },
+                "tsp": {
+                    "calories": "",
+                    "g": "",
+                    "displacement": ""
+                }
+            }
+        }
+    ]
+}
