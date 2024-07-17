@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react';
 
 import data from './assets/formulas.json';
+import FormulaDetailsView from './components/formulaDetailsView';
 
 export default function App() {
 
@@ -18,9 +19,7 @@ export default function App() {
         {data.formulas.map((x, idx) => <Picker.Item key={x.uuid} label={x.name} value={idx} />)}
       </Picker>
 
-      <p>
-        {data.formulas[selectedFormulaIdx]?.name}
-      </p>
+      {selectedFormulaIdx ? <FormulaDetailsView {...data.formulas[selectedFormulaIdx]} /> : <></>}
 
     </View>
   );
