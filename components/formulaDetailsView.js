@@ -39,7 +39,6 @@ const FormulaDetailsView = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#25292e',
       alignItems: 'center',
       justifyContent: 'center',
       border: 'solid black 5px'
