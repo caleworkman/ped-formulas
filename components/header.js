@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Link } from 'expo-router';
+
+import AppText from '../components/appText.js';
 
 
 export default function Header() {
 
     return (
         <View style={styles.container}>
-            <Link style={styles.link} href='/'>Home</Link>
-            <Link style={styles.link} href='/formulas'>List</Link>
-            <Link style={styles.link} href='/solver'>Solver</Link>
+            <Link style={styles.link} href='/'><AppText>HOME</AppText></Link>
+            <Link style={styles.link} href='/formulas'><AppText>LIST</AppText></Link>
+            <Link style={styles.link} href='/solver'><AppText>SOLVER</AppText></Link>
         </View>
     )
 }

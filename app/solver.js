@@ -2,6 +2,8 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react';
 
+import AppText from '../components/appText.js';
+
 import data from '../assets/formulaDetails.json';
 import FormulaDetailsView from '../components/formulaDetailsView';
 
@@ -47,9 +49,10 @@ export default function App() {
     return (
         <View style={styles.container}>
 
-            <table style={styles.table}>
+            <table>
+            
                 <tr>
-                    <td><Text>Brand</Text></td>
+                    <td><AppText>Brand</AppText></td>
                     <td> 
                         <Picker selectedValue={selectedBrandIdx} onValueChange={idx => setSelectedBrandIdx(idx)} >
                             {brands.map((x, idx) => <Picker.Item key={x + idx} label={x} value={idx} />)}
@@ -57,7 +60,7 @@ export default function App() {
                     </td>
                 </tr>
                 <tr>
-                    <td><Text>Formula</Text></td>
+                    <td><AppText>Formula</AppText></td>
                     <td> 
                         <Picker selectedValue={selectedFormulaIdx} onValueChange={idx => setSelectedFormulaIdx(idx)}>
                             {formulas.map((x, idx) => <Picker.Item key={x.uuid} label={x.name} value={idx} />)}
@@ -65,15 +68,15 @@ export default function App() {
                     </td>
                 </tr>
                 <tr>
-                    <td>Body Weight (kg)</td>
+                    <td><AppText>Body Weight (kg)</AppText></td>
                     <td><TextInput type='number' onChangeText={value => setBodyWeight(value)} /></td>
                 </tr>
                 <tr>
-                    <td>Bottle Size (oz)</td>
+                    <td><AppText>Bottle Size (oz)</AppText></td>
                     <td><TextInput onChangeText={value => setBottleSizeOz(value)} /></td>
                 </tr>
                 <tr>
-                    <td>Calories</td>
+                    <td><AppText>Calories</AppText></td>
                     <td><TextInput onChangeText={value => setCalorieTarget(value)} /></td>
                 </tr>
             </table>
@@ -81,22 +84,21 @@ export default function App() {
             <table>
                 <thead>
                 <tr>
-                    <th>CUPS</th>
-                    <th>SCOOPS</th>
-                    <th>TBSP</th>
-                    <th>TSP</th>
+                    <th><AppText>CUPS</AppText></th>
+                    <th><AppText>SCOOPS</AppText></th>
+                    <th><AppText>TBSP</AppText></th>
+                    <th><AppText>TSP</AppText></th>
                 </tr>
                 </thead>
                 <tbody>
-                    <td>{ratios.cups}</td>
-                    <td>{ratios.scoops}</td>
-                    <td>{ratios.tbsps}</td>
-                    <td>{ratios.tsps}</td>
+                    <td><AppText>{ratios.cups}</AppText></td>
+                    <td><AppText>{ratios.scoops}</AppText></td>
+                    <td><AppText>{ratios.tbsps}</AppText></td>
+                    <td><AppText>{ratios.tsps}</AppText></td>
                 </tbody>
             </table>
 
  
-
             {selectedFormulaIdx ? <FormulaDetailsView {...data.formulas[selectedFormulaIdx]} /> : <></>}
 
         </View>
@@ -107,9 +109,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center', 
     },
-    table: {
-        fontColor: 'white'
-    }
 });

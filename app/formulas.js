@@ -2,6 +2,8 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react';
 import data from '../assets/formulaDetails.json';
+import AppText from '../components/appText.js';
+
 
 export default function Formulas() {
 
@@ -18,31 +20,21 @@ export default function Formulas() {
         {brands.map((brand, idx) => <Picker.Item key={idx} label={brand} value={brand} />)}
       </Picker>
 
-      <table>
-        <thead style={{ 'position': 'sticky', 'top': 0 }}>
+      <table style={{borderCollapse: "collapse"}}>
+        <thead style={{position: "sticky", top: 0}}>
           <tr style={styles.headerRow}>
-            <th colSpan="3" style={styles.headerCell}></th>
-            <th colSpan="3" style={styles.headerCell}>SCOOP</th>
-            <th colSpan="3" style={styles.headerCell}>CUP</th>
-            <th colSpan="3" style={styles.headerCell}>TBSP</th>
-            <th colSpan="3" style={styles.headerCell}>TSP</th>
+            {['', "SCOOP", "CUP", "TBSP", "TSP"].map(x => {
+              return (
+                <th colSpan="3" style={styles.headerCell}><AppText>{x}</AppText></th>
+              )
+            })}
           </tr>
           <tr style={styles.headerRow}>
-            <th style={styles.headerCell}>Name</th>
-            <th style={styles.headerCell}>Brand</th>
-            <th style={styles.headerCell}>Protein (g) / 100 Cal</th>
-            <th style={styles.headerCell}>cal</th>
-            <th style={styles.headerCell}>g</th>
-            <th style={styles.headerCell}>disp</th>
-            <th style={styles.headerCell}>cal</th>
-            <th style={styles.headerCell}>g</th>
-            <th style={styles.headerCell}>disp</th>
-            <th style={styles.headerCell}>cal</th>
-            <th style={styles.headerCell}>g</th>
-            <th style={styles.headerCell}>disp</th>
-            <th style={styles.headerCell}>cal</th>
-            <th style={styles.headerCell}>g</th>
-            <th style={styles.headerCell}>disp</th>
+            {['Name', 'Brand', 'Protein (g) / 100 Cal'].concat(new Array(4).fill(['cal', 'g', 'disp']).flat()).map(x => {
+              return (
+                <th style={styles.headerCell}><AppText>{x}</AppText></th>
+              );
+            })}
           </tr>
         </thead>
 
@@ -86,9 +78,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     overflowY: 'scroll',
     width: '100%'
-
-  },
-  content: {
   },
   headerRow: {
     backgroundColor: "#3182bd",
@@ -108,9 +97,11 @@ const styles = StyleSheet.create({
   },
   dataCellName: {
     padding: 4,
+    border: "solid #25292e 2px"
   },
   dataCell: {
     padding: 4,
-    textAlign: "center"
+    textAlign: "center",
+    border: "solid #25292e 2px"
   }
 });
