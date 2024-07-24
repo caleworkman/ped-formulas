@@ -9,7 +9,7 @@ export default function Header() {
     return (
         <View style={styles.container}>
             <Link style={styles.link} href='/'><AppText>HOME</AppText></Link>
-            <Link style={styles.link} href='/formulas'><AppText>LIST</AppText></Link>
+            <Link style={styles.link} href='/list'><AppText>LIST</AppText></Link>
             <Link style={styles.link} href='/solver'><AppText>SOLVER</AppText></Link>
         </View>
     )
