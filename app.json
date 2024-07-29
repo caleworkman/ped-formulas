@@ -21,14 +21,14 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router"
     ],
     "scheme": "my-app-scheme",
-    "web": {
-      "bundler": "metro"
+    "experiments": {
+      "baseUrl": "/ped-formulas"
     }
   }
 }
