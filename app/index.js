@@ -1,17 +1,17 @@
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react';
 
-import AppText from '../components/appText.js';
-
 import data from '../assets/formulaDetails.json';
-import FormulaDetailsView from '../components/formulaDetailsView.js';
-import { ML_TO_OZ } from '../assets/constants.js';
+import { ML_TO_OZ, PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
+import { MY_RED, MY_BLUE} from '../assets/constants.js';
 
+import AppText from '../components/appText.js';
 import InputWithlabel from '../components/inputWithLabel.js';
 import CustomPicker from '../components/customPicker.js';
 import CustomTextInput from '../components/customTextInput.js';
 import MixingRatioString from '../components/mixingRatioString.js';
+import OutputTable from '../components/outputTable';
 
 function calculateRatios(calories, formula) {
     const calories_per_cup = formula?.units['cup'].calories;
@@ -33,12 +33,19 @@ function calculateRatios(calories, formula) {
         'cups': cups ? cups : 0,
         'scoops': scoops ? scoops : 0,
         'tbsps': tbsps ? tbsps : 0,
-        'tsps': tsps ? tsps : 0,
-        'calories': cups * calories_per_cup + scoops * calories_per_scoop + tbsps * calories_per_tbsp + tsps * calories_per_tsp ?? 0
+        'tsps': tsps ? tsps : 0
     }
 }
 
-function calcualateDisplacement(formula, ratios) {
+function calculateCalories(ratios, formula) {
+    const calories_per_cup = formula?.units['cup'].calories;
+    const calories_per_scoop = formula?.units['scoop'].calories;
+    const calories_per_tbsp = formula?.units['tbsp'].calories;
+    const calories_per_tsp = formula?.units['tsp'].calories;
+    return ratios.cups * calories_per_cup + ratios.scoops * calories_per_scoop + ratios.tbsps * calories_per_tbsp + ratios.tsps * calories_per_tsp
+}
+
+function calculateDisplacement(ratios, formula) {
     const per_cup = ratios?.cups * formula?.units['cup'].displacement;
     const per_scoop = ratios?.scoops * formula?.units['scoop'].displacement;
     const per_tbsp = ratios?.tbsps * formula?.units['tbsp'].displacement;
@@ -46,7 +53,7 @@ function calcualateDisplacement(formula, ratios) {
     return ML_TO_OZ * (per_cup + per_scoop + per_tbsp + per_tsp);
 }
 
-function calculateProtein(calories, formula)  {
+function calculateProtein(calories, formula) {
     return calories * formula?.g_protein_per_100_cal / 100;
 }
 
@@ -54,17 +61,22 @@ export default function App() {
 
     const [selectedFormulaIdx, setSelectedFormulaIdx] = useState(0);
     const [selectedBrandIdx, setSelectedBrandIdx] = useState(0);
-    const [bodyWeight, setBodyWeight] = useState();
-    const [bottleSizeOz, setBottleSizeOz] = useState();
-    const [calorieTarget, setCalorieTarget] = useState();
+    const [bodyWeight, setBodyWeight] = useState(0);
+    const [bottleSizeOz, setBottleSizeOz] = useState(0);
+    const [calorieTarget, setCalorieTarget] = useState(0);
+    const [showMoreDetail, setShowmMoreDetail] = useState(false);
 
-    const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))]
-    const selectedBrand = selectedBrandIdx ? brands[selectedBrandIdx] : ''
+    const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
+    const selectedBrand = selectedBrandIdx ? brands[selectedBrandIdx] : '';
 
-    const formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas
+    const formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas;
+    const selectedFormula = formulas[selectedFormulaIdx]
 
-    const ratios = calculateRatios(calorieTarget, formulas[selectedFormulaIdx])
-    const displacement = calcualateDisplacement(formulas[selectedFormulaIdx], ratios)
+    const ratios = calculateRatios(calorieTarget, selectedFormula);
+    const calories = calculateCalories(ratios, selectedFormula);
+    const displacement = calculateDisplacement(ratios, selectedFormula);
+    const protein = calculateProtein(calories, selectedFormula);
+    const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
     return (
         <View style={styles.container}>
@@ -91,41 +103,53 @@ export default function App() {
                 </InputWithlabel>
 
                 <InputWithlabel label="Bottle Size (oz)">
-                    <CustomTextInput onChangeText={value => setBottleSizeOz(value)} />
+                    <CustomTextInput inputMode='numeric' onChangeText={value => setBottleSizeOz(value)} />
                 </InputWithlabel>
 
                 <InputWithlabel label="Body Weight (kg)">
-                    <CustomTextInput type='number' onChangeText={value => setBodyWeight(value)} />
+                    <CustomTextInput inputMode='numeric' onChangeText={value => setBodyWeight(value)} />
                 </InputWithlabel>
 
             </View>
 
-            <View style={{ margin: '10px'}}>
-                <AppText>Mixing Results</AppText>
-                <MixingRatioString cups={ratios.cups} scoops={ratios.scoops} tbsps={ratios.tbsps} tsps={ratios.tsps} calories={ratios.calories} />
+            <View style={{ margin: '10px' }}>
+                {calories > 0
+                    ? <View>
+                        <View style={{ padding: '4px', alignSelf: 'center' }}>
+                            <MixingRatioString cups={ratios.cups} scoops={ratios.scoops} tbsps={ratios.tbsps} tsps={ratios.tsps} calories={ratios.calories} />
+                        </View>
+                        {(!acceptableProtein && bodyWeight)
+                            ? <View style={{ padding: '6px', marginTop: '4px',alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
+                                <AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg is greater than {PROTEIN_LIMIT_G_PER_KG} g/kg</Text></AppText>
+                            </View>
+                            : <></>
+                        }
+                    </View>
+                    : <></>
+                }
             </View>
-            
-        
-            <table>
-                <tbody>
-                    <tr>
-                        <td><AppText>Calories</AppText></td>
-                        <td><AppText>{ratios.calories ?? ''}</AppText></td>
-                    </tr>
-                    <tr>
-                        <td><AppText>Water Displaced (oz)</AppText></td>
-                        <td><AppText>{displacement ?? ''}</AppText></td>
-                    </tr>
-                    <tr>
-                        <td><AppText>Water to Mix (oz)</AppText></td>
-                        <td><AppText>{(bottleSizeOz - displacement) ?? ''}</AppText></td>
-                    </tr>
-                    <tr>
-                        <td><AppText>Protein (g)</AppText></td>
-                        <td><AppText>{calculateProtein(ratios.calories, formulas[selectedFormulaIdx]) ?? ''}</AppText></td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <OutputTable
+                calories={calories}
+                calorieTarget={calorieTarget}
+                displacement={displacement}
+                bottleSizeOz={bottleSizeOz}
+                protein={protein}
+                bodyweight={bodyWeight}
+                expanded={showMoreDetail}
+            />
+
+            <View style={{ flexDirection: 'row', padding: '12px' }}>
+                <Pressable 
+                    onPress={() => setShowmMoreDetail(prevState => !prevState)}
+                    style={{backgroundColor: MY_BLUE, padding: '8px', borderRadius: '4px'}}>
+                    <AppText>
+                        <Text style={{fontSize: '12px'}}>
+                            {showMoreDetail ? "Less Detail" : "More Detail"}
+                        </Text>
+                    </AppText>
+                </Pressable>
+            </View>
 
         </View>
     );
@@ -135,13 +159,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'top',
     },
-    picker: {
-        padding: '4px'
-    },
-    input: {
-        backgroundColor: 'white',
-        padding: '4px'
-    }
 });

@@ -1,0 +1,63 @@
+import { Text } from 'react-native';
+import { MY_BLUE } from '../assets/constants.js';
+import AppText from '../components/appText.js';
+
+
+const OutputTable = (props) => {
+
+    const waterToMix = (props.bottleSizeOz - props.displacement) || 0;
+    const proteinPerKg = (props.protein / props.bodyweight) || 0;
+
+    // This will always be a negative number because of the way cups/scoops/etc are calculated
+    const percentCalorieDifference = Math.abs(100 * (props.calories - props.calorieTarget) / props.calorieTarget) || 0;
+
+
+    return (
+        <table style={{ border: 'solid 1px white', borderRadius: '4px', borderSpacing: '8px', background: MY_BLUE }}>
+            <tbody style={{ border: 'solid 1px white', borderSpacing: '4px' }}>
+
+                <tr>
+                    <td><AppText><Text style={{ fontWeight: 'bold' }}>Calories</Text></AppText></td>
+                    <td><AppText>{props.calories?.toFixed(1)}</AppText></td>
+                </tr>
+
+                {props.expanded
+                    ? <tr>
+                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Calorie Difference</Text></AppText></td>
+                        <td><AppText>{percentCalorieDifference?.toFixed(0)} %</AppText></td>
+                    </tr>
+                    : <></>
+                }
+
+                <tr>
+                    <td><AppText><Text style={{ fontWeight: 'bold' }}>Water to Mix</Text></AppText></td>
+                    <td><AppText>{waterToMix.toFixed(1) || '-'} oz</AppText></td>
+                </tr>
+                
+                {props.expanded
+                    ? <tr>
+                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Water Displaced</Text></AppText></td>
+                        <td><AppText>{props.displacement?.toFixed(1) || ''} oz</AppText></td>
+                    </tr>
+                    : <></>
+                }
+
+                <tr>
+                    <td><AppText><Text style={{ fontWeight: 'bold' }}>Protein</Text></AppText></td>
+                    <td><AppText>{props.protein?.toFixed(1) || '0.0'} g</AppText></td>
+                </tr>
+
+                {props.expanded
+                    ? <tr>
+                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg</Text></AppText></td>
+                        <td><AppText>{proteinPerKg.toFixed(1) || '0.0'} g / kg</AppText></td>
+                    </tr>
+                    : <></>
+                }
+
+            </tbody>
+        </table>
+    );
+};
+
+export default OutputTable;

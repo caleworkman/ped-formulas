@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { Link } from 'expo-router';
 
 import AppText from '../components/appText.js';
+import { MY_BLUE } from '../assets/constants.js';
 
 
 export default function Header() {
@@ -16,7 +17,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#253494', 
+        backgroundColor: MY_BLUE, 
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
