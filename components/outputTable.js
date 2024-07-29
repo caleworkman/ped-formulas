@@ -5,8 +5,10 @@ import AppText from '../components/appText.js';
 
 const OutputTable = (props) => {
 
-    const waterToMix = (props.bottleSizeOz - props.displacement) || 0;
-    const proteinPerKg = (props.protein / props.bodyweight) || 0;
+    let waterToMix = (props.bottleSizeOz - props.displacement) || 0;
+    waterToMix = waterToMix > 0 ? waterToMix.toFixed(1) + ' oz' : '-';
+
+    let proteinPerKg = (props.bodyweight > 0) ? (props.protein / props.bodyweight).toFixed(1) + ' g / kg' : '-';
 
     // This will always be a negative number because of the way cups/scoops/etc are calculated
     const percentCalorieDifference = Math.abs(100 * (props.calories - props.calorieTarget) / props.calorieTarget) || 0;
@@ -31,7 +33,7 @@ const OutputTable = (props) => {
 
                 <tr>
                     <td><AppText><Text style={{ fontWeight: 'bold' }}>Water to Mix</Text></AppText></td>
-                    <td><AppText>{waterToMix.toFixed(1) || '-'} oz</AppText></td>
+                    <td><AppText>{waterToMix}</AppText></td>
                 </tr>
                 
                 {props.expanded
@@ -50,7 +52,7 @@ const OutputTable = (props) => {
                 {props.expanded
                     ? <tr>
                         <td><AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg</Text></AppText></td>
-                        <td><AppText>{proteinPerKg.toFixed(1) || '0.0'} g / kg</AppText></td>
+                        <td><AppText>{proteinPerKg}</AppText></td>
                     </tr>
                     : <></>
                 }
