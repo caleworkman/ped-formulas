@@ -101,24 +101,23 @@ export default function App() {
                     </CustomPicker>
                 </InputWithlabel>
 
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', }}>
-                    <View style={{ flexGrow: '1', marginRight: '4px' }}>
-
-                        <InputWithlabel label={caloriesPerOz ? "Calories / Oz" : "Calories"}>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+                    <View style={{ flexGrow: '1', marginRight: '8px' }}>
+                        <InputWithlabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
                             <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
                         </InputWithlabel>
                     </View>
-
-                    <Pressable
-                        onPress={() => setCaloriesPerOz(prevState => !prevState)}
-                        style={[styles.button, caloriesPerOz ? styles.pressed : styles.unpressed]}>
-                        <AppText>
-                            <Text style={{ fontSize: '12px' }}>
-                                {caloriesPerOz ? "Per Oz" : "Per Oz"}
-                            </Text>
-                        </AppText>
-                    </Pressable>
-
+                    <View style={{ marginBottom: '4px' }}>
+                        <Pressable
+                            onPress={() => setCaloriesPerOz(prevState => !prevState)}
+                            style={[styles.button, caloriesPerOz ? styles.pressed : styles.unpressed]}>
+                            <AppText>
+                                <Text style={{ fontSize: '12px' }}>
+                                    Per Oz
+                                </Text>
+                            </AppText>
+                        </Pressable>
+                    </View>
                 </View>
 
                 <InputWithlabel label="Bottle Size (oz)">
@@ -181,7 +180,10 @@ const styles = StyleSheet.create({
         justifyContent: 'top',
     },
     button: {
-        padding: '8px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        paddingRight: '8px',
+        paddingLeft: '8px',
         borderRadius: '4px',
         elevation: '5px',
     },

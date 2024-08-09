@@ -3,6 +3,7 @@ export const ML_TO_OZ = 0.033814;
 export const KG_TO_LBS = 2.20462;
 
 // Colors
+// https://colorbrewer2.org/#type=sequential&scheme=Blues&n=7
 export const MY_RED = '#993404';
 export const MY_BLUE = '#08519c';
 export const MY_DARK_BLUE = '#084594';
