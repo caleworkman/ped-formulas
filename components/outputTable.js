@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { MY_BLUE } from '../assets/constants.js';
+import { MY_BLUE, MY_WHITE } from '../assets/constants.js';
 import AppText from '../components/appText.js';
 
 
@@ -15,7 +15,7 @@ const OutputTable = (props) => {
 
 
     return (
-        <table style={{ border: 'solid 1px white', borderRadius: '4px', borderSpacing: '8px', background: MY_BLUE }}>
+        <table style={{ border: 'solid 1px', borderColor: MY_WHITE, borderRadius: '4px', borderSpacing: '8px', background: MY_BLUE }}>
             <tbody style={{ border: 'solid 1px white', borderSpacing: '4px' }}>
 
                 <tr>

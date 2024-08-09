@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { Link } from 'expo-router';
 
 import AppText from '../components/appText.js';
-import { MY_BLUE } from '../assets/constants.js';
+import { MY_BLUE, MY_WHITE } from '../assets/constants.js';
 
 
 export default function Header() {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         fontSize: 20, 
         fontWeight: 'bold',
-        color: 'white'
+        color: MY_WHITE
 
     }
   });

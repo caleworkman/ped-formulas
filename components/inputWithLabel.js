@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { MY_WHITE } from '../assets/constants.js';
 
 const InputWithlabel = (props) => {
 
@@ -11,7 +12,7 @@ const InputWithlabel = (props) => {
             <Text style={{
                 fontWeight: 'bold',
                 fontSize: 16,
-                color: 'white',
+                color: MY_WHITE,
                 fontFamily: 'Helvetica',
                 paddingBottom: 4,
                 paddingLeft: 0

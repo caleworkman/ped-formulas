@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import data from '../assets/formulaDetails.json';
 import { ML_TO_OZ, PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
-import { MY_RED, MY_BLUE} from '../assets/constants.js';
+import { MY_RED, MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 
 import AppText from '../components/appText.js';
 import InputWithlabel from '../components/inputWithLabel.js';
@@ -65,6 +65,7 @@ export default function App() {
     const [bottleSizeOz, setBottleSizeOz] = useState(0);
     const [calorieTarget, setCalorieTarget] = useState(0);
     const [showMoreDetail, setShowmMoreDetail] = useState(false);
+    const [caloriesPerOz, setCaloriesPerOz] = useState(false);
 
     const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
     const selectedBrand = selectedBrandIdx ? brands[selectedBrandIdx] : '';
@@ -72,7 +73,9 @@ export default function App() {
     const formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas;
     const selectedFormula = formulas[selectedFormulaIdx]
 
-    const ratios = calculateRatios(calorieTarget, selectedFormula);
+    const ratios = calculateRatios(
+        caloriesPerOz ? bottleSizeOz * calorieTarget : calorieTarget, 
+        selectedFormula);
     const calories = calculateCalories(ratios, selectedFormula);
     const displacement = calculateDisplacement(ratios, selectedFormula);
     const protein = calculateProtein(calories, selectedFormula);
@@ -98,16 +101,32 @@ export default function App() {
                     </CustomPicker>
                 </InputWithlabel>
 
-                <InputWithlabel label="Calories">
-                    <CustomTextInput inputMode='numeric' onChangeText={value => setCalorieTarget(value)} />
-                </InputWithlabel>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', }}>
+                    <View style={{ flexGrow: '1', marginRight: '4px' }}>
+
+                        <InputWithlabel label={caloriesPerOz ? "Calories / Oz" : "Calories"}>
+                            <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
+                        </InputWithlabel>
+                    </View>
+
+                    <Pressable
+                        onPress={() => setCaloriesPerOz(prevState => !prevState)}
+                        style={[styles.button, caloriesPerOz ? styles.pressed : styles.unpressed]}>
+                        <AppText>
+                            <Text style={{ fontSize: '12px' }}>
+                                {caloriesPerOz ? "Per Oz" : "Per Oz"}
+                            </Text>
+                        </AppText>
+                    </Pressable>
+
+                </View>
 
                 <InputWithlabel label="Bottle Size (oz)">
-                    <CustomTextInput inputMode='numeric' onChangeText={value => setBottleSizeOz(value)} />
+                    <CustomTextInput inputMode='decimal' onChangeText={value => setBottleSizeOz(value)} />
                 </InputWithlabel>
 
                 <InputWithlabel label="Body Weight (kg)">
-                    <CustomTextInput inputMode='numeric' onChangeText={value => setBodyWeight(value)} />
+                    <CustomTextInput inputMode='decimal' onChangeText={value => setBodyWeight(value)} />
                 </InputWithlabel>
 
             </View>
@@ -119,7 +138,7 @@ export default function App() {
                             <MixingRatioString cups={ratios.cups} scoops={ratios.scoops} tbsps={ratios.tbsps} tsps={ratios.tsps} calories={ratios.calories} />
                         </View>
                         {(!acceptableProtein && bodyWeight)
-                            ? <View style={{ padding: '6px', marginTop: '4px',alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
+                            ? <View style={{ padding: '6px', marginTop: '4px', alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
                                 <AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg is greater than {PROTEIN_LIMIT_G_PER_KG} g/kg</Text></AppText>
                             </View>
                             : <></>
@@ -140,11 +159,11 @@ export default function App() {
             />
 
             <View style={{ flexDirection: 'row', padding: '12px' }}>
-                <Pressable 
+                <Pressable
                     onPress={() => setShowmMoreDetail(prevState => !prevState)}
-                    style={{backgroundColor: MY_BLUE, padding: '8px', borderRadius: '4px'}}>
+                    style={[styles.button, showMoreDetail ? styles.pressed : styles.unpressed]}>
                     <AppText>
-                        <Text style={{fontSize: '12px'}}>
+                        <Text style={{ fontSize: '12px' }}>
                             {showMoreDetail ? "Less Detail" : "More Detail"}
                         </Text>
                     </AppText>
@@ -161,4 +180,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'top',
     },
+    button: {
+        padding: '8px',
+        borderRadius: '4px',
+        elevation: '5px',
+    },
+    pressed: {
+        backgroundColor: MY_DARK_BLUE,
+    },
+    unpressed: {
+        backgroundColor: MY_BLUE,
+        shadowColor: 'black',
+        shadowRadius: '5px',
+        shadowOffset: { width: '0px', height: '2px' }
+    }
 });
