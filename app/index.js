@@ -62,7 +62,7 @@ export default function App() {
     const [selectedFormulaIdx, setSelectedFormulaIdx] = useState(0);
     const [selectedBrandIdx, setSelectedBrandIdx] = useState(0);
     const [bodyWeight, setBodyWeight] = useState(0);
-    const [bottleSizeOz, setBottleSizeOz] = useState(0);
+    const [volumeOz, setVolumeOz] = useState(0);
     const [calorieTarget, setCalorieTarget] = useState(0);
     const [showMoreDetail, setShowmMoreDetail] = useState(false);
     const [caloriesPerOz, setCaloriesPerOz] = useState(false);
@@ -74,10 +74,10 @@ export default function App() {
     const selectedFormula = formulas[selectedFormulaIdx]
 
     const ratios = calculateRatios(
-        caloriesPerOz ? bottleSizeOz * calorieTarget : calorieTarget, 
+        caloriesPerOz ? volumeOz * calorieTarget : calorieTarget, 
         selectedFormula);
     const calories = calculateCalories(ratios, selectedFormula);
-    const displacement = calculateDisplacement(ratios, selectedFormula);
+    const displacementOz = calculateDisplacement(ratios, selectedFormula);
     const protein = calculateProtein(calories, selectedFormula);
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
@@ -119,9 +119,9 @@ export default function App() {
                         </Pressable>
                     </View>
                 </View>
-
-                <InputWithlabel label="Bottle Size (oz)">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setBottleSizeOz(value)} />
+                
+                <InputWithlabel label="Volume (oz)">
+                    <CustomTextInput inputMode='decimal' onChangeText={value => setVolumeOz(value)} />
                 </InputWithlabel>
 
                 <InputWithlabel label="Body Weight (kg)">
@@ -150,9 +150,10 @@ export default function App() {
             <OutputTable
                 calories={calories}
                 calorieTarget={calorieTarget}
-                displacement={displacement}
-                bottleSizeOz={bottleSizeOz}
+                displacementOz={displacementOz}
+                volumeOz={volumeOz}
                 protein={protein}
+                acceptableProtein={acceptableProtein}
                 bodyweight={bodyWeight}
                 expanded={showMoreDetail}
             />
