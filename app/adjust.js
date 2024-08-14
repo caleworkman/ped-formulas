@@ -31,7 +31,6 @@ export default function App() {
     const protein = calculateProtein(calories, formula);
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
-
     return (
         <View style={styles.container}>
 
@@ -47,21 +46,23 @@ export default function App() {
                     <CustomTextInput inputMode='decimal' onChangeText={value => setBodyWeight(value)} />
                 </InputWithLabel>
 
-                <InputWithLabel label="Cups">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setNumCups(value)} />
-                </InputWithLabel>
+                <View style={{ paddingTop: "10px" }}>
+                    <InputWithLabel label="Cups" oneLine={true}>
+                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumCups(value)} style={{width: "50px"}} />
+                    </InputWithLabel>
 
-                <InputWithLabel label="Scoops">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setNumScoops(value)} />
-                </InputWithLabel>
+                    <InputWithLabel label="Scoops" oneLine={true}>
+                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumScoops(value)} style={{width: "50px"}}/>
+                    </InputWithLabel>
 
-                <InputWithLabel label="Tbsp">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setNumTbsps(value)} />
-                </InputWithLabel>
+                    <InputWithLabel label="Tbsp" oneLine={true}>
+                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumTbsps(value)} style={{width: "50px"}} />
+                    </InputWithLabel>
 
-                <InputWithLabel label="Tsp">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setNumTsps(value)} />
-                </InputWithLabel>
+                    <InputWithLabel label="Tsp" oneLine={true}>
+                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumTsps(value)} style={{width: "50px"}} />
+                    </InputWithLabel>
+                </View>
 
             </View>
 
