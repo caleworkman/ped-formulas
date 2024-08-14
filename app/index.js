@@ -1,84 +1,38 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react';
 
-import data from '../assets/formulaDetails.json';
-import { ML_TO_OZ, PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
+import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
 import { MY_RED, MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 
 import AppText from '../components/appText.js';
-import InputWithlabel from '../components/inputWithLabel.js';
-import CustomPicker from '../components/customPicker.js';
+import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
 import MixingRatioString from '../components/mixingRatioString.js';
 import OutputTable from '../components/outputTable';
 
-function calculateRatios(calories, formula) {
-    const calories_per_cup = formula?.units['cup'].calories;
-    const cups = Math.floor(calories / calories_per_cup);
-    let remainder = calories - (cups * calories_per_cup);
+import FormulaPicker from '../components/formulaPicker';
 
-    const calories_per_scoop = formula?.units['scoop'].calories;
-    const scoops = Math.floor(remainder / calories_per_scoop);
-    remainder = remainder - (scoops * calories_per_scoop);
+import { calculateRatios } from '../functions/calculateRatios';
+import { calculateCalories } from '../functions/calculateCalories';
+import { calculateDisplacement } from '../functions/calculateDisplacement';
+import { calculateProtein } from '../functions/calculateProtein';
 
-    const calories_per_tbsp = formula?.units['tbsp'].calories;
-    const tbsps = Math.floor(remainder / calories_per_tbsp);
-    remainder = remainder - (tbsps * calories_per_tbsp);
-
-    const calories_per_tsp = formula?.units['tsp'].calories;
-    const tsps = Math.floor(remainder / calories_per_tsp);
-
-    return {
-        'cups': cups ? cups : 0,
-        'scoops': scoops ? scoops : 0,
-        'tbsps': tbsps ? tbsps : 0,
-        'tsps': tsps ? tsps : 0
-    }
-}
-
-function calculateCalories(ratios, formula) {
-    const calories_per_cup = formula?.units['cup'].calories;
-    const calories_per_scoop = formula?.units['scoop'].calories;
-    const calories_per_tbsp = formula?.units['tbsp'].calories;
-    const calories_per_tsp = formula?.units['tsp'].calories;
-    return ratios.cups * calories_per_cup + ratios.scoops * calories_per_scoop + ratios.tbsps * calories_per_tbsp + ratios.tsps * calories_per_tsp
-}
-
-function calculateDisplacement(ratios, formula) {
-    const per_cup = ratios?.cups * formula?.units['cup'].displacement;
-    const per_scoop = ratios?.scoops * formula?.units['scoop'].displacement;
-    const per_tbsp = ratios?.tbsps * formula?.units['tbsp'].displacement;
-    const per_tsp = ratios?.tsps * formula?.units['tsp'].displacement;
-    return ML_TO_OZ * (per_cup + per_scoop + per_tbsp + per_tsp);
-}
-
-function calculateProtein(calories, formula) {
-    return calories * formula?.g_protein_per_100_cal / 100;
-}
 
 export default function App() {
 
-    const [selectedFormulaIdx, setSelectedFormulaIdx] = useState(0);
-    const [selectedBrandIdx, setSelectedBrandIdx] = useState(0);
     const [bodyWeight, setBodyWeight] = useState(0);
     const [volumeOz, setVolumeOz] = useState(0);
     const [calorieTarget, setCalorieTarget] = useState(0);
-    const [showMoreDetail, setShowmMoreDetail] = useState(false);
+    const [showMoreDetail, setShowMoreDetail] = useState(false);
     const [caloriesPerOz, setCaloriesPerOz] = useState(false);
 
-    const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
-    const selectedBrand = selectedBrandIdx ? brands[selectedBrandIdx] : '';
+    const [formula, setFormula] = useState()
 
-    const formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas;
-    const selectedFormula = formulas[selectedFormulaIdx]
+    const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(caloriesPerOz ? volumeOz * calorieTarget : calorieTarget, formula);
 
-    const ratios = calculateRatios(
-        caloriesPerOz ? volumeOz * calorieTarget : calorieTarget, 
-        selectedFormula);
-    const calories = calculateCalories(ratios, selectedFormula);
-    const displacementOz = calculateDisplacement(ratios, selectedFormula);
-    const protein = calculateProtein(calories, selectedFormula);
+    const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
+    const displacementOz = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula);
+    const protein = calculateProtein(calories, formula);
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
     return (
@@ -89,23 +43,15 @@ export default function App() {
                 width: '300px',
             }}>
 
-                <InputWithlabel label="Brand">
-                    <CustomPicker selectedValue={selectedBrandIdx} onValueChange={idx => setSelectedBrandIdx(idx)} >
-                        {brands.map((x, idx) => <Picker.Item key={x + idx} label={x} value={idx} />)}
-                    </CustomPicker>
-                </InputWithlabel>
-
-                <InputWithlabel label="Formula">
-                    <CustomPicker selectedValue={selectedFormulaIdx} onValueChange={idx => setSelectedFormulaIdx(idx)}>
-                        {formulas.map((x, idx) => <Picker.Item key={x.uuid} label={x.name} value={idx} />)}
-                    </CustomPicker>
-                </InputWithlabel>
+                <FormulaPicker
+                    onValueChange={f => setFormula(f)}
+                />
 
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                     <View style={{ flexGrow: '1', marginRight: '8px' }}>
-                        <InputWithlabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
+                        <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
                             <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
-                        </InputWithlabel>
+                        </InputWithLabel>
                     </View>
                     <View style={{ marginBottom: '4px' }}>
                         <Pressable
@@ -120,13 +66,13 @@ export default function App() {
                     </View>
                 </View>
                 
-                <InputWithlabel label="Volume (oz)">
+                <InputWithLabel label="Volume (oz)">
                     <CustomTextInput inputMode='decimal' onChangeText={value => setVolumeOz(value)} />
-                </InputWithlabel>
+                </InputWithLabel>
 
-                <InputWithlabel label="Body Weight (kg)">
+                <InputWithLabel label="Body Weight (kg)">
                     <CustomTextInput inputMode='decimal' onChangeText={value => setBodyWeight(value)} />
-                </InputWithlabel>
+                </InputWithLabel>
 
             </View>
 
@@ -134,7 +80,7 @@ export default function App() {
                 {calories > 0
                     ? <View>
                         <View style={{ padding: '4px', alignSelf: 'center' }}>
-                            <MixingRatioString cups={ratios.cups} scoops={ratios.scoops} tbsps={ratios.tbsps} tsps={ratios.tsps} calories={ratios.calories} />
+                            <MixingRatioString cups={numCups} scoops={numScoops} tbsps={numTbsps} tsps={numTsps} />
                         </View>
                         {(!acceptableProtein && bodyWeight)
                             ? <View style={{ padding: '6px', marginTop: '4px', alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
@@ -149,7 +95,7 @@ export default function App() {
 
             <OutputTable
                 calories={calories}
-                calorieTarget={calorieTarget}
+                calorieTarget={caloriesPerOz ? volumeOz * calorieTarget : calorieTarget}
                 displacementOz={displacementOz}
                 volumeOz={volumeOz}
                 protein={protein}
@@ -160,7 +106,7 @@ export default function App() {
 
             <View style={{ flexDirection: 'row', padding: '12px' }}>
                 <Pressable
-                    onPress={() => setShowmMoreDetail(prevState => !prevState)}
+                    onPress={() => setShowMoreDetail(prevState => !prevState)}
                     style={[styles.button, showMoreDetail ? styles.pressed : styles.unpressed]}>
                     <AppText>
                         <Text style={{ fontSize: '12px' }}>

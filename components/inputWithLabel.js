@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import { MY_WHITE } from '../assets/constants.js';
 
-const InputWithlabel = (props) => {
+const InputWithLabel = (props) => {
 
     return (
         <View style={{
@@ -28,4 +28,4 @@ const InputWithlabel = (props) => {
     )
 }
 
-export default InputWithlabel
+export default InputWithLabel
