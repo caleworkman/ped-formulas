@@ -13,6 +13,7 @@ const FormulaPicker = (props) => {
     console.log(props.defaultBrandName, props.defaultFormulaUuid)
 
     const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
+    brands.sort()
     const defaultBrandIdx = brands.indexOf(props.defaultBrandName) ?? 0
 
     const [selectedBrandIdx, setSelectedBrandIdx] = useState(defaultBrandIdx);
@@ -21,7 +22,8 @@ const FormulaPicker = (props) => {
 
     // Add a dummy value that's blank so the parent won't appear to have no values
     let formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas;
-    formulas = [{uuid: '', name: ''}, ...formulas]
+    formulas.sort((a, b) => a.name.localeCompare(b.name));
+    formulas = [{uuid: '', name: ''}, ...formulas];
 
     return (
         <View>
@@ -32,7 +34,10 @@ const FormulaPicker = (props) => {
             </InputWithLabel>
 
             <InputWithLabel label="Formula">
-                <CustomPicker onValueChange={idx => props.onValueChange(formulas[idx])}>
+                <CustomPicker 
+                    placeholder={formulas[0]}
+                    onValueChange={idx => props.onValueChange(formulas[idx])}
+                >
                     {formulas.map((x, idx) => 
                         <Picker.Item 
                             key={x.uuid} 
