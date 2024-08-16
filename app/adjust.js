@@ -20,12 +20,12 @@ export default function App() {
 
     const params = useLocalSearchParams();
 
-    const [volume, setVolume] = useState(params?.volumeOz);
-    const [bodyWeight, setBodyWeight] = useState(params?.bodyWeight);
-    const [numCups, setNumCups] = useState(params?.numCups);
-    const [numScoops, setNumScoops] = useState(params?.numScoops);
-    const [numTbsps, setNumTbsps] = useState(params?.numTbsps);
-    const [numTsps, setNumTsps] = useState(params?.numTsps);
+    const [waterOz, setWaterOz] = useState(parseFloat(params?.water));
+    const [bodyWeight, setBodyWeight] = useState(parseFloat(params?.bodyWeight));
+    const [numCups, setNumCups] = useState(parseFloat(params?.numCups));
+    const [numScoops, setNumScoops] = useState(parseFloat(params?.numScoops));
+    const [numTbsps, setNumTbsps] = useState(parseFloat(params?.numTbsps));
+    const [numTsps, setNumTsps] = useState(parseFloat(params?.numTsps));
     const [formula, setFormula] = useState(params?.formula);
 
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
@@ -46,9 +46,9 @@ export default function App() {
 
                 <InputWithLabel label="Water (oz)">
                     <CustomTextInput 
-                        value={volume}
+                        value={waterOz}
                         inputMode='decimal' 
-                        onChangeText={value => setVolume(value)} 
+                        onChangeText={value => setWaterOz(value)} 
                     />
                 </InputWithLabel>
 
@@ -110,11 +110,11 @@ export default function App() {
 
             <OutputTable
                 calories={calories}
-                displacementOz={displacementOz}
-                volumeOz={volume}
+                totalVolume={waterOz + displacementOz}
+                waterDisplacedOz={displacementOz}
                 protein={protein}
+                proteinPerKg={bodyWeight ? (protein / bodyWeight).toFixed(1) : "-"}
                 acceptableProtein={acceptableProtein}
-                bodyWeight={bodyWeight}
             />
 
         </View>

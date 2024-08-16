@@ -8,7 +8,8 @@ const CustomPicker = ({ children, ...rest}) => {
             style={{
                 padding: '4px', 
                 borderRadius: '4px'
-        }}>
+            }}
+        >
             {children}
         </Picker>
     )

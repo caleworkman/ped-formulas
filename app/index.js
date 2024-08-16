@@ -100,7 +100,7 @@ export default function App() {
                                         numTbsps: numTbsps,
                                         numTsps: numTsps,
                                         bodyWeight: bodyWeight,
-                                        volumeOz: volumeOz
+                                        water: parseFloat((volumeOz - displacementOz).toFixed(1))
                                     }
                                 }}
                             >
@@ -118,12 +118,12 @@ export default function App() {
 
             <OutputTable
                 calories={calories}
-                calorieTarget={caloriesPerOz ? volumeOz * calorieTarget : calorieTarget}
-                displacementOz={displacementOz}
-                volumeOz={volumeOz}
+                calorieDifference={calorieTarget ? Math.abs(100 * (calories - calorieTarget)/calorieTarget) : 0}
+                waterToMixOz={volumeOz - displacementOz > 0 ? volumeOz - displacementOz : 0}
+                waterDisplacedOz={displacementOz}
                 protein={protein}
+                proteinPerKg={bodyWeight ? (protein / bodyWeight).toFixed(1) : "-"}
                 acceptableProtein={acceptableProtein}
-                bodyWeight={bodyWeight}
             />
 
         </View>

@@ -1,5 +1,5 @@
 import { Picker } from '@react-native-picker/picker'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View } from 'react-native';
 
 import CustomPicker from '../components/customPicker.js';
@@ -9,8 +9,6 @@ import data from '../assets/formulaDetails.json';
 
 
 const FormulaPicker = (props) => {
-
-    console.log(props.defaultBrandName, props.defaultFormulaUuid)
 
     const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
     brands.sort()
@@ -23,7 +21,16 @@ const FormulaPicker = (props) => {
     // Add a dummy value that's blank so the parent won't appear to have no values
     let formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas;
     formulas.sort((a, b) => a.name.localeCompare(b.name));
-    formulas = [{uuid: '', name: ''}, ...formulas];
+
+    const defaultFormulaIdx = formulas.map(f => f.uuid).indexOf(props.defaultFormulaUuid)
+
+    useEffect(() => {
+        props.onValueChange(formulas[defaultFormulaIdx])
+    }, [props.defaultFormulaUuid])
+
+    useEffect(() => {
+        props.onValueChange(formulas[0])
+    }, [selectedBrandIdx])
 
     return (
         <View>
@@ -35,7 +42,7 @@ const FormulaPicker = (props) => {
 
             <InputWithLabel label="Formula">
                 <CustomPicker 
-                    placeholder={formulas[0]}
+                    defaultValue={defaultFormulaIdx}
                     onValueChange={idx => props.onValueChange(formulas[idx])}
                 >
                     {formulas.map((x, idx) => 

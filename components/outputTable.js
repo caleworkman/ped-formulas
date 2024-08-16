@@ -14,18 +14,13 @@ const OutputTable = (props) => {
     const [useOz, setUseOz] = useState(true);
     const [expanded, setExpanded] = useState(false);
 
-    let waterToMixOz = (props.volumeOz - props.displacementOz) || 0;
-    let waterToMixML = waterToMixOz / ML_TO_OZ
-    waterToMixOz = waterToMixOz > 0 ? waterToMixOz.toFixed(1) + ' oz' : '-';
-    waterToMixML = waterToMixML > 0 ? waterToMixML.toFixed(0) + ' mL' : '-';
-
-    let displacementOz = (props.displacementOz?.toFixed(1) || '0') + " oz"
-    let displacementML = ((props.displacementOz / ML_TO_OZ).toFixed(0) || '0') + " mL"
-
-    let proteinPerKg = (props.bodyWeight > 0) ? (props.protein / props.bodyWeight).toFixed(1) + ' g / kg' : '-';
-
-    // This will always be a negative number because of the way cups/scoops/etc are calculated
-    const percentCalorieDifference = Math.abs(100 * (props.calories - props.calorieTarget) / props.calorieTarget) || 0;
+    function convertVolume(volume, useOz) {
+        if (useOz) {
+            return volume.toFixed(1) + " oz";
+        } else {
+            return (volume / ML_TO_OZ).toFixed(1) + " mL"
+        }
+    }
 
     return (
         <View style={{
@@ -38,58 +33,100 @@ const OutputTable = (props) => {
             alignItems: "center"
         }}>
 
-            <table style={{
-                borderSpacing: '8px',
-            }}>
+            <table style={{ borderSpacing: '8px' }}>
                 <tbody>
 
-                    <tr>
-                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Calories</Text></AppText></td>
-                        <td><AppText>{props.calories?.toFixed(1)}</AppText></td>
-                    </tr>
+                    {typeof(props.calories) == "number" ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Calories</Text></AppText>
+                            </td>
+                            <td>
+                                <AppText>{props.calories.toFixed(1)}</AppText>
+                            </td>
+                        </tr>
+                        : <></>
+                    }               
 
-                    {expanded & props.calorieTarget
-                        ? <tr>
-                            <td><AppText><Text style={{ fontWeight: 'bold' }}>Calorie Difference</Text></AppText></td>
-                            <td><AppText>{percentCalorieDifference?.toFixed(0)} %</AppText></td>
+                    {typeof(props.calorieDifference) == "number" && expanded ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Difference</Text></AppText>
+                            </td>
+                            <td>
+                                <AppText>{props.calorieDifference.toFixed(0) + "%"}</AppText>
+                            </td>
                         </tr>
                         : <></>
                     }
 
-                    <tr>
-                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Water to Mix</Text></AppText></td>
-                        <td>
-                            <Pressable onPress={() => setUseOz(prevState => !prevState)}>
-                                <AppText>{useOz ? waterToMixOz : waterToMixML}</AppText>
-                            </Pressable>
-                        </td>
-                    </tr>
-
-
-                    {expanded
-                        ? <tr>
-                            <td><AppText><Text style={{ fontWeight: 'bold' }}>Water Displaced</Text></AppText></td>
+                    {typeof(props.totalVolume) == "number" ?
+                            
+                        <tr>
                             <td>
-                                <Pressable onPress={() => setUseOz(prevState => !prevState)}>
-                                    <AppText>{useOz ? displacementOz : displacementML}</AppText>
+                                <AppText><Text style={{fontWeight: "bold"}}>Total Volume</Text></AppText>
+                            </td>
+                            <td>
+                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
+                                    <AppText>{convertVolume(props.totalVolume, useOz)}</AppText>
                                 </Pressable>
                             </td>
                         </tr>
                         : <></>
                     }
 
-                    <tr>
-                        <td><AppText><Text style={{ fontWeight: 'bold' }}>Protein</Text></AppText></td>
-                        <td><AppText>{props.protein?.toFixed(1) || '0.0'} g</AppText></td>
-                    </tr>
-
-                    {expanded
-                        ? <tr>
-                            <td><AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg</Text></AppText></td>
-                            <td><AppText>{proteinPerKg}</AppText></td>
+                    {typeof(props.waterToMixOz) == "number" ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Water to Mix</Text></AppText>
+                            </td>
+                            <td>
+                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
+                                    <AppText>{convertVolume(props.waterToMixOz, useOz)}</AppText>
+                                </Pressable>
+                            </td>
                         </tr>
                         : <></>
                     }
+
+                    {typeof(props.waterDisplacedOz) == "number" & expanded ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Water Displaced</Text></AppText>
+                            </td>
+                            <td>
+                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
+                                    <AppText>{convertVolume(props.waterDisplacedOz, useOz)}</AppText>
+                                </Pressable>
+                            </td>
+                        </tr>
+                        : <></>
+                    }
+
+                    {typeof(props.protein) == "number" ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Protein</Text></AppText>
+                            </td>
+                            <td>
+                                <AppText>{props.protein.toFixed(1) + " g"}</AppText>
+                            </td>
+                        </tr>
+                        : <></>
+                    }       
+
+                    {props.proteinPerKg && expanded ?
+                        <tr>
+                            <td>
+                                <AppText><Text style={{fontWeight: "bold"}}>Protein per kg</Text></AppText>
+                            </td>
+                            <td>
+                                <AppText>{props.proteinPerKg + " kg / g"}</AppText>
+                            </td>
+                        </tr>
+                        : <></>
+                    }     
+
                 </tbody>
             </table>
 
