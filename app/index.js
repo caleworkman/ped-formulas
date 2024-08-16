@@ -2,12 +2,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 
 import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
-import { MY_RED, MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
+import { MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 
 import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
 import MixingRatioString from '../components/mixingRatioString.js';
+import ProteinWarning from '../components/proteinWarning.js';
 import OutputTable from '../components/outputTable';
 
 import FormulaPicker from '../components/formulaPicker';
@@ -23,7 +24,6 @@ export default function App() {
     const [bodyWeight, setBodyWeight] = useState(0);
     const [volumeOz, setVolumeOz] = useState(0);
     const [calorieTarget, setCalorieTarget] = useState(0);
-    const [showMoreDetail, setShowMoreDetail] = useState(false);
     const [caloriesPerOz, setCaloriesPerOz] = useState(false);
 
     const [formula, setFormula] = useState()
@@ -83,9 +83,7 @@ export default function App() {
                             <MixingRatioString cups={numCups} scoops={numScoops} tbsps={numTbsps} tsps={numTsps} />
                         </View>
                         {(!acceptableProtein && bodyWeight)
-                            ? <View style={{ padding: '6px', marginTop: '4px', alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
-                                <AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg is greater than {PROTEIN_LIMIT_G_PER_KG} g/kg</Text></AppText>
-                            </View>
+                            ? <ProteinWarning protein_limit={PROTEIN_LIMIT_G_PER_KG} />
                             : <></>
                         }
                     </View>
@@ -101,20 +99,7 @@ export default function App() {
                 protein={protein}
                 acceptableProtein={acceptableProtein}
                 bodyweight={bodyWeight}
-                expanded={showMoreDetail}
             />
-
-            <View style={{ flexDirection: 'row', padding: '12px' }}>
-                <Pressable
-                    onPress={() => setShowMoreDetail(prevState => !prevState)}
-                    style={[styles.button, showMoreDetail ? styles.pressed : styles.unpressed]}>
-                    <AppText>
-                        <Text style={{ fontSize: '12px' }}>
-                            {showMoreDetail ? "Less Detail" : "More Detail"}
-                        </Text>
-                    </AppText>
-                </Pressable>
-            </View>
 
         </View>
     );

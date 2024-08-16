@@ -8,6 +8,7 @@ import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
 import FormulaPicker from '../components/formulaPicker';
+import ProteinWarning from '../components/proteinWarning.js';
 
 import { calculateCalories } from '../functions/calculateCalories';
 import { calculateDisplacement } from '../functions/calculateDisplacement';
@@ -70,9 +71,7 @@ export default function App() {
                 {calories > 0
                     ? <View>
                         {(!acceptableProtein && bodyWeight)
-                            ? <View style={{ padding: '6px', marginTop: '4px', alignSelf: 'center', border: 'solid 1px', borderRadius: '4px', backgroundColor: MY_RED }}>
-                                <AppText><Text style={{ fontWeight: 'bold' }}>Protein per kg is greater than {PROTEIN_LIMIT_G_PER_KG} g/kg</Text></AppText>
-                            </View>
+                            ? <ProteinWarning protein_limit={PROTEIN_LIMIT_G_PER_KG} />
                             : <></>
                         }
                     </View>
