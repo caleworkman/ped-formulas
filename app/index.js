@@ -98,7 +98,7 @@ export default function App() {
                 volumeOz={volumeOz}
                 protein={protein}
                 acceptableProtein={acceptableProtein}
-                bodyweight={bodyWeight}
+                bodyWeight={bodyWeight}
             />
 
         </View>

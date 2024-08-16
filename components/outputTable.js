@@ -22,7 +22,7 @@ const OutputTable = (props) => {
     let displacementOz = (props.displacementOz?.toFixed(1) || '0') + " oz"
     let displacementML = ((props.displacementOz / ML_TO_OZ).toFixed(0) || '0') + " mL"
 
-    let proteinPerKg = (props.bodyweight > 0) ? (props.protein / props.bodyweight).toFixed(1) + ' g / kg' : '-';
+    let proteinPerKg = (props.bodyWeight > 0) ? (props.protein / props.bodyWeight).toFixed(1) + ' g / kg' : '-';
 
     // This will always be a negative number because of the way cups/scoops/etc are calculated
     const percentCalorieDifference = Math.abs(100 * (props.calories - props.calorieTarget) / props.calorieTarget) || 0;
@@ -48,7 +48,7 @@ const OutputTable = (props) => {
                         <td><AppText>{props.calories?.toFixed(1)}</AppText></td>
                     </tr>
 
-                    {expanded
+                    {expanded & props.calorieTarget
                         ? <tr>
                             <td><AppText><Text style={{ fontWeight: 'bold' }}>Calorie Difference</Text></AppText></td>
                             <td><AppText>{percentCalorieDifference?.toFixed(0)} %</AppText></td>
@@ -94,7 +94,7 @@ const OutputTable = (props) => {
             </table>
 
 
-            <Pressable onPress={() => setExpanded(prevState => !prevState)} style={{paddingTop: "4px"}}>
+            <Pressable onPress={() => setExpanded(prevState => !prevState)} style={{padding: "4px"}}>
                 {expanded ? <ExpandCircleUp /> : <ExpandCircleDown />}
             </Pressable>
 

@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 
 import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
-import { MY_RED, MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 
-import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
 import FormulaPicker from '../components/formulaPicker';
@@ -49,19 +47,19 @@ export default function App() {
 
                 <View style={{ paddingTop: "10px" }}>
                     <InputWithLabel label="Cups" oneLine={true}>
-                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumCups(value)} style={{width: "50px"}} />
+                        <CustomTextInput inputMode='number' onChangeText={value => setNumCups(value)} style={{width: "50px", textAlign: "center"}} />
                     </InputWithLabel>
 
                     <InputWithLabel label="Scoops" oneLine={true}>
-                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumScoops(value)} style={{width: "50px"}}/>
+                        <CustomTextInput inputMode='number' onChangeText={value => setNumScoops(value)} style={{width: "50px", textAlign: "center"}}/>
                     </InputWithLabel>
 
                     <InputWithLabel label="Tbsp" oneLine={true}>
-                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumTbsps(value)} style={{width: "50px"}} />
+                        <CustomTextInput inputMode='number' onChangeText={value => setNumTbsps(value)} style={{width: "50px", textAlign: "center"}} />
                     </InputWithLabel>
 
                     <InputWithLabel label="Tsp" oneLine={true}>
-                        <CustomTextInput inputMode='decimal' onChangeText={value => setNumTsps(value)} style={{width: "50px"}} />
+                        <CustomTextInput inputMode='number' onChangeText={value => setNumTsps(value)} style={{width: "50px", textAlign: "center"}} />
                     </InputWithLabel>
                 </View>
 
@@ -81,11 +79,11 @@ export default function App() {
 
             <OutputTable
                 calories={calories}
+                displacementOz={displacementOz}
                 volumeOz={volume}
                 protein={protein}
                 acceptableProtein={acceptableProtein}
-                // bodyWeight={bodyWeight}
-                // expanded={expanded}
+                bodyWeight={bodyWeight}
             />
 
         </View>

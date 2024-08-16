@@ -14,7 +14,7 @@ const ProteinWarning = (props) => {
             
             <AppText>
                 <Text style={{ fontWeight: 'bold' }}>
-                    Protein per kg is greater than {props.protein_limit} g/kg
+                    Protein concentration is greater than {props.protein_limit} g/kg
                 </Text>
             </AppText>
         </View>
