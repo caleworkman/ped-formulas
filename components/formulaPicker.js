@@ -10,9 +10,13 @@ import data from '../assets/formulaDetails.json';
 
 const FormulaPicker = (props) => {
 
-    const [selectedBrandIdx, setSelectedBrandIdx] = useState(0);
+    console.log(props.defaultBrandName, props.defaultFormulaUuid)
 
     const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))];
+    const defaultBrandIdx = brands.indexOf(props.defaultBrandName) ?? 0
+
+    const [selectedBrandIdx, setSelectedBrandIdx] = useState(defaultBrandIdx);
+
     const selectedBrand = brands[selectedBrandIdx];
 
     // Add a dummy value that's blank so the parent won't appear to have no values

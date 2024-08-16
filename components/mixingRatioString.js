@@ -1,22 +1,22 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import AppText from './appText';
 
 const MixingRatioString = (props) => {
 
     return (
-       <AppText>
+        <AppText>
             <Text>Use </Text>
 
-            <Text style={{fontWeight: 'bold'}}>
-                {props.cups} cups,
-            </Text> 
+            <Text style={{ fontWeight: 'bold' }}>
+                {props.numCups} cups,
+            </Text>
 
-            <Text style={{fontWeight: 'bold'}}> {props.scoops} scoops,</Text> 
+            <Text style={{ fontWeight: 'bold' }}> {props.numScoops} scoops,</Text>
 
-            <Text style={{fontWeight: 'bold'}}> {props.tbsps} tbsps,</Text> 
+            <Text style={{ fontWeight: 'bold' }}> {props.numTbsps} tbsps,</Text>
 
             <Text> and</Text>
-            <Text style={{fontWeight: 'bold'}}> {props.tsps} tsps.</Text> 
+            <Text style={{ fontWeight: 'bold' }}> {props.numTsps} tsps.</Text>
 
         </AppText>
     )

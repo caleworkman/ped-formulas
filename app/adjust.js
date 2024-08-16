@@ -13,17 +13,20 @@ import { calculateDisplacement } from '../functions/calculateDisplacement';
 import { calculateProtein } from '../functions/calculateProtein';
 
 import OutputTable from '../components/outputTable.js';
+import { useLocalSearchParams } from 'expo-router';
 
 
 export default function App() {
 
-    const [volume, setVolume] = useState(0);
-    const [bodyWeight, setBodyWeight] = useState(0);
-    const [numCups, setNumCups] = useState(0);
-    const [numScoops, setNumScoops] = useState(0);
-    const [numTbsps, setNumTbsps] = useState(0);
-    const [numTsps, setNumTsps] = useState(0);
-    const [formula, setFormula] = useState();
+    const params = useLocalSearchParams();
+
+    const [volume, setVolume] = useState(params?.volumeOz);
+    const [bodyWeight, setBodyWeight] = useState(params?.bodyWeight);
+    const [numCups, setNumCups] = useState(params?.numCups);
+    const [numScoops, setNumScoops] = useState(params?.numScoops);
+    const [numTbsps, setNumTbsps] = useState(params?.numTbsps);
+    const [numTsps, setNumTsps] = useState(params?.numTsps);
+    const [formula, setFormula] = useState(params?.formula);
 
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
     const displacementOz = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula);
@@ -35,31 +38,59 @@ export default function App() {
 
             <View style={{ margin: '10px', width: '300px' }}>
 
-                <FormulaPicker onValueChange={f => setFormula(f)} />
+                <FormulaPicker 
+                    defaultBrandName={params?.formulaBrandName} 
+                    defaultFormulaUuid={params?.formulaUuid}
+                    onValueChange={f => setFormula(f)} 
+                />
 
                 <InputWithLabel label="Water (oz)">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setVolume(value)} />
+                    <CustomTextInput 
+                        value={volume}
+                        inputMode='decimal' 
+                        onChangeText={value => setVolume(value)} 
+                    />
                 </InputWithLabel>
 
                 <InputWithLabel label="Body Weight (kg)">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setBodyWeight(value)} />
+                    <CustomTextInput 
+                        value={bodyWeight}
+                        inputMode='decimal' 
+                        onChangeText={value => setBodyWeight(value)} 
+                    />
                 </InputWithLabel>
 
                 <View style={{ paddingTop: "10px" }}>
                     <InputWithLabel label="Cups" oneLine={true}>
-                        <CustomTextInput inputMode='number' onChangeText={value => setNumCups(value)} style={{width: "50px", textAlign: "center"}} />
+                        <CustomTextInput 
+                            value={numCups}
+                            inputMode='number' 
+                            onChangeText={value => setNumCups(value)} style={{width: "50px", textAlign: "center"}} 
+                        />
                     </InputWithLabel>
 
                     <InputWithLabel label="Scoops" oneLine={true}>
-                        <CustomTextInput inputMode='number' onChangeText={value => setNumScoops(value)} style={{width: "50px", textAlign: "center"}}/>
+                        <CustomTextInput 
+                            value={numScoops}
+                            inputMode='number' 
+                            onChangeText={value => setNumScoops(value)} style={{width: "50px", textAlign: "center"}}
+                        />
                     </InputWithLabel>
 
                     <InputWithLabel label="Tbsp" oneLine={true}>
-                        <CustomTextInput inputMode='number' onChangeText={value => setNumTbsps(value)} style={{width: "50px", textAlign: "center"}} />
+                        <CustomTextInput 
+                            value={numTbsps}
+                            inputMode='number' 
+                            onChangeText={value => setNumTbsps(value)} style={{width: "50px", textAlign: "center"}} 
+                        />
                     </InputWithLabel>
 
                     <InputWithLabel label="Tsp" oneLine={true}>
-                        <CustomTextInput inputMode='number' onChangeText={value => setNumTsps(value)} style={{width: "50px", textAlign: "center"}} />
+                        <CustomTextInput 
+                            value={numTsps}
+                            inputMode='number' 
+                            onChangeText={value => setNumTsps(value)} style={{width: "50px", textAlign: "center"}} 
+                        />
                     </InputWithLabel>
                 </View>
 

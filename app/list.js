@@ -25,7 +25,7 @@ export default function Formulas() {
           <tr style={styles.headerRow}>
             {['', "SCOOP", "CUP", "TBSP", "TSP"].map(x => {
               return (
-                <th colSpan="3" style={styles.headerCell}><AppText>{x}</AppText></th>
+                <th colSpan="3" style={styles.headerCell} key={x}><AppText>{x}</AppText></th>
               )
             })}
           </tr>

@@ -1,8 +1,11 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
 import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
 import { MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
+import EditSquare from '../assets/editSquare';
+
 
 import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
@@ -10,7 +13,6 @@ import CustomTextInput from '../components/customTextInput.js';
 import MixingRatioString from '../components/mixingRatioString.js';
 import ProteinWarning from '../components/proteinWarning.js';
 import OutputTable from '../components/outputTable';
-
 import FormulaPicker from '../components/formulaPicker';
 
 import { calculateRatios } from '../functions/calculateRatios';
@@ -79,8 +81,31 @@ export default function App() {
             <View style={{ margin: '10px' }}>
                 {calories > 0
                     ? <View>
-                        <View style={{ padding: '4px', alignSelf: 'center' }}>
-                            <MixingRatioString cups={numCups} scoops={numScoops} tbsps={numTbsps} tsps={numTsps} />
+                        <View style={{ padding: '4px', alignSelf: 'center', display: "flex", flexDirection: "row", alignItems: "center" }}>
+                            <MixingRatioString 
+                                numCups={numCups} 
+                                numScoops={numScoops} 
+                                numTbsps={numTbsps}
+                                numTsps={numTsps} 
+                            />
+                            <Link 
+                                style={{paddingLeft: "8px", top: "2px"}}
+                                href={{
+                                    pathname: '/adjust',
+                                    params: {
+                                        formulaBrandName: formula.brand,
+                                        formulaUuid: formula.uuid,
+                                        numCups: numCups,
+                                        numScoops: numScoops,
+                                        numTbsps: numTbsps,
+                                        numTsps: numTsps,
+                                        bodyWeight: bodyWeight,
+                                        volumeOz: volumeOz
+                                    }
+                                }}
+                            >
+                                <EditSquare />
+                            </Link>
                         </View>
                         {(!acceptableProtein && bodyWeight)
                             ? <ProteinWarning protein_limit={PROTEIN_LIMIT_G_PER_KG} />
