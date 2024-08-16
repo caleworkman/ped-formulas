@@ -30,7 +30,7 @@ const OutputTable = (props) => {
     return (
         <View style={{
             border: 'solid 2px',
-            borderColor: props.acceptableProtein || props.protein == 0 || props.bodyweight == 0 ? MY_WHITE : MY_RED,
+            borderColor: props.acceptableProtein || props.protein == 0 || props.bodyWeight == 0 ? MY_WHITE : MY_RED,
             borderRadius: '4px',
             background: MY_BLUE,
             padding: "4px",
