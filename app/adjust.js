@@ -1,12 +1,14 @@
 import { StyleSheet, View } from 'react-native';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
 
 import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
-import FormulaPicker from '../components/formulaPicker';
+import FormulaContext from '../components/formulaContext.js';
+import FormulaPicker from '../components/formulaPicker.js';
 import ProteinWarning from '../components/proteinWarning.js';
+
 
 import { calculateCalories } from '../functions/calculateCalories';
 import { calculateDisplacement } from '../functions/calculateDisplacement';
@@ -20,13 +22,14 @@ export default function App() {
 
     const params = useLocalSearchParams();
 
-    const [waterOz, setWaterOz] = useState(parseFloat(params?.water));
-    const [bodyWeight, setBodyWeight] = useState(parseFloat(params?.bodyWeight));
-    const [numCups, setNumCups] = useState(parseFloat(params?.numCups));
-    const [numScoops, setNumScoops] = useState(parseFloat(params?.numScoops));
-    const [numTbsps, setNumTbsps] = useState(parseFloat(params?.numTbsps));
-    const [numTsps, setNumTsps] = useState(parseFloat(params?.numTsps));
-    const [formula, setFormula] = useState(params?.formula);
+    const [waterOz, setWaterOz] = useState(parseFloat(params?.water ?? 0));
+    const [bodyWeight, setBodyWeight] = useState(parseFloat(params?.bodyWeight ?? 0));
+    const [numCups, setNumCups] = useState(parseFloat(params?.numCups ?? 0));
+    const [numScoops, setNumScoops] = useState(parseFloat(params?.numScoops ?? 0));
+    const [numTbsps, setNumTbsps] = useState(parseFloat(params?.numTbsps ?? 0));
+    const [numTsps, setNumTsps] = useState(parseFloat(params?.numTsps ?? 0));
+
+    const { formula } = useContext(FormulaContext);
 
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
     const displacementOz = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula);
@@ -38,11 +41,7 @@ export default function App() {
 
             <View style={{ margin: '10px', width: '300px' }}>
 
-                <FormulaPicker 
-                    defaultBrandName={params?.formulaBrandName} 
-                    defaultFormulaUuid={params?.formulaUuid}
-                    onValueChange={f => setFormula(f)} 
-                />
+                <FormulaPicker />
 
                 <InputWithLabel label="Water (oz)">
                     <CustomTextInput 

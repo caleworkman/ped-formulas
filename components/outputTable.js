@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { ML_TO_OZ } from '../assets/constants.js';
 import { MY_RED, MY_BLUE, MY_WHITE } from '../assets/constants.js';
-import AppText from '../components/appText.js';
+import AppText from './appText.js';
 
 import ExpandCircleDown from '../assets/expandCircleDown.js';
 import ExpandCircleUp from '../assets/expandCircleUp.js';
