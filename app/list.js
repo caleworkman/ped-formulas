@@ -7,16 +7,17 @@ import AppText from '../components/appText.js';
 
 export default function Formulas() {
 
-  const [selectedBrand, setSelectedBrand] = useState();
+  const [brand, setBrand] = useState();
 
   const brands = [...new Set(Object.values(data.formulas).map(f => f.brand))]
+  brands.sort()
 
-  const formulas = selectedBrand ? data.formulas.filter(f => f.brand == selectedBrand) : data.formulas
+  const formulas = brand ? data.formulas.filter(f => f.brand == brand) : data.formulas
 
   return (
     <View style={styles.container}>
 
-      <Picker selectedValue={selectedBrand} onValueChange={brand => setSelectedBrand(brand)}>
+      <Picker selectedValue={brand} onValueChange={brand => setBrand(brand)}>
         {brands.map((brand, idx) => <Picker.Item key={idx} label={brand} value={brand} />)}
       </Picker>
 
