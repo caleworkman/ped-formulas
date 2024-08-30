@@ -47,7 +47,8 @@ export default function App() {
                     <CustomTextInput 
                         value={waterOz}
                         inputMode='decimal' 
-                        onChangeText={value => setWaterOz(value)} 
+                        onChangeText={value => setWaterOz(value)}
+                        clearTextOnFocus={true}
                     />
                 </InputWithLabel>
 
@@ -56,6 +57,7 @@ export default function App() {
                         value={bodyWeight}
                         inputMode='decimal' 
                         onChangeText={value => setBodyWeight(value)} 
+                        clearTextOnFocus={true}
                     />
                 </InputWithLabel>
 
@@ -63,32 +65,36 @@ export default function App() {
                     <InputWithLabel label="Cups" oneLine={true}>
                         <CustomTextInput 
                             value={numCups}
-                            inputMode='number' 
+                            inputMode='numeric' 
                             onChangeText={value => setNumCups(value)} style={{width: "50px", textAlign: "center"}} 
+                            clearTextOnFocus={true}
                         />
                     </InputWithLabel>
 
                     <InputWithLabel label="Scoops" oneLine={true}>
                         <CustomTextInput 
                             value={numScoops}
-                            inputMode='number' 
+                            inputMode='numeric' 
                             onChangeText={value => setNumScoops(value)} style={{width: "50px", textAlign: "center"}}
+                            clearTextOnFocus={true}
                         />
                     </InputWithLabel>
 
                     <InputWithLabel label="Tbsp" oneLine={true}>
                         <CustomTextInput 
                             value={numTbsps}
-                            inputMode='number' 
+                            inputMode='numeric' 
                             onChangeText={value => setNumTbsps(value)} style={{width: "50px", textAlign: "center"}} 
+                            clearTextOnFocus={true}
                         />
                     </InputWithLabel>
 
                     <InputWithLabel label="Tsp" oneLine={true}>
                         <CustomTextInput 
                             value={numTsps}
-                            inputMode='number' 
+                            inputMode='numeric' 
                             onChangeText={value => setNumTsps(value)} style={{width: "50px", textAlign: "center"}} 
+                            clearTextOnFocus={true}
                         />
                     </InputWithLabel>
                 </View>
