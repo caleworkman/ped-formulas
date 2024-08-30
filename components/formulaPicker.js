@@ -8,6 +8,8 @@ import InputWithLabel from './inputWithLabel.js';
 import data from '../assets/formulaDetails.json';
 
 import FormulaContext from './formulaContext.js';
+import FormulaMissingWarning from '../components/formulaMissingWarning.js';
+
 
 
 const FormulaPicker = () => {
@@ -55,6 +57,8 @@ const FormulaPicker = () => {
                         />)}
                 </CustomPicker>
             </InputWithLabel>
+
+            <FormulaMissingWarning formula={formula} />
 
         </View>
     )
