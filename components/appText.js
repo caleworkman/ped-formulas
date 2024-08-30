@@ -5,7 +5,7 @@ const AppText = ({ children }) => {
   return (
     <Text
       style={{
-        fontSize: 16,
+        fontSize: "16px",
         color: MY_WHITE,
         fontFamily: 'Helvetica'
       }}>

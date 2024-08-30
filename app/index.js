@@ -59,7 +59,7 @@ export default function App() {
                                 onPress={() => setCaloriesPerOz(prevState => !prevState)}
                                 style={[styles.button, caloriesPerOz ? styles.pressed : styles.unpressed]}>
                                 <AppText>
-                                    <Text style={{ fontSize: '12px' }}>
+                                    <Text style={{ fontSize: '16px' }}>
                                         Per Oz
                                     </Text>
                                 </AppText>

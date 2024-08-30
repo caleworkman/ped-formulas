@@ -7,7 +7,8 @@ const CustomPicker = ({ children, ...rest}) => {
             {...rest}
             style={{
                 padding: '4px', 
-                borderRadius: '4px'
+                borderRadius: '4px',
+                fontSize: "16px"
             }}
         >
             {children}

@@ -1,5 +1,5 @@
 import { Picker } from '@react-native-picker/picker'
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { View } from 'react-native';
 
 import CustomPicker from './customPicker.js';

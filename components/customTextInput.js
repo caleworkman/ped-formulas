@@ -11,6 +11,7 @@ const CustomTextInput = (props) => {
                 padding: '4px', 
                 borderRadius: '4px',
                 backgroundColor: 'white',
+                fontSize: "16px"
             }
         ]} />
     )
