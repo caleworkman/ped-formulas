@@ -405,8 +405,8 @@
                     "displacement": 7.0
                 },
                 "cup": {
-                    "calories": "475",
-                    "grams": "100",
+                    "calories": 475,
+                    "grams": 100,
                     "displacement": "X"
                 },
                 "tbsp": {
@@ -433,8 +433,8 @@
                     "displacement": 7.0
                 },
                 "cup": {
-                    "calories": "469",
-                    "grams": "100",
+                    "calories": 469,
+                    "grams": 100,
                     "displacement": "X"
                 },
                 "tbsp": {
@@ -461,8 +461,8 @@
                     "displacement": 6.7
                 },
                 "cup": {
-                    "calories": "469",
-                    "grams": "100",
+                    "calories": 469,
+                    "grams": 100,
                     "displacement": "X"
                 },
                 "tbsp": {
@@ -489,8 +489,8 @@
                     "displacement": 6.6
                 },
                 "cup": {
-                    "calories": "469",
-                    "grams": "100",
+                    "calories": 469,
+                    "grams": 100,
                     "displacement": "X"
                 },
                 "tbsp": {
