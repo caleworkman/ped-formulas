@@ -52,9 +52,9 @@ export default function Formulas() {
                 {["scoop", "cup", "tbsp", "tsp"].map(unit => {
                   return (
                     <>
-                      <td key={unit + "1"} style={styles.dataCell}>{formula.units[unit].calories}</td>
-                      <td key={unit + "2"} style={styles.dataCell}>{formula.units[unit].grams}</td>
-                      <td key={unit + "3"} style={styles.dataCell}>{formula.units[unit].displacement}</td>
+                      <td key={formula.uuid + unit + "calories"} style={styles.dataCell}>{formula.units[unit].calories}</td>
+                      <td key={formula.uuid + unit + "grams"} style={styles.dataCell}>{formula.units[unit].grams}</td>
+                      <td key={formula.uuid + unit + "displacement"} style={styles.dataCell}>{formula.units[unit].displacement}</td>
                     </>
                   )
                 })}
