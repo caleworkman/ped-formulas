@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, ScrollView, View } from 'react-native';
 import { useContext, useState } from 'react';
 import { Link } from 'expo-router';
 
