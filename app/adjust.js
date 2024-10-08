@@ -18,7 +18,7 @@ import OutputTable from '../components/outputTable.js';
 import { useLocalSearchParams } from 'expo-router';
 
 
-export default function App() {
+export default function Adjust() {
 
     const params = useLocalSearchParams();
 

@@ -1,11 +1,10 @@
-import { Pressable, StyleSheet, Text, ScrollView, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useContext, useState } from 'react';
 import { Link } from 'expo-router';
 
 import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
 import { MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 import EditSquare from '../assets/editSquare';
-
 
 import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
