@@ -10,9 +10,9 @@ import FormulaPicker from '../components/formulaPicker.js';
 import ProteinWarning from '../components/proteinWarning.js';
 
 
-import { calculateCalories } from '../functions/calculateCalories';
-import { calculateDisplacement } from '../functions/calculateDisplacement';
-import { calculateProtein } from '../functions/calculateProtein';
+import { calculateCalories } from '../functions/calc/calculateCalories.js';
+import { calculateDisplacement } from '../functions/calc/calculateDisplacement.js';
+import { calculateProtein } from '../functions/calc/calculateProtein.js';
 
 import OutputTable from '../components/outputTable.js';
 import { useLocalSearchParams } from 'expo-router';

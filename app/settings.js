@@ -1,24 +1,42 @@
 import { StyleSheet, View } from 'react-native';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import UnitSelector from '../components/unitSelector';
-
+import { readBool, readValue } from '../functions/storage/read.js';
+import { storeValue } from '../functions/storage/store.js';
 
 export default function Settings() {
 
+    const [targetCaloriesPerOz, setTargetCaloriesPerOz] = useState(false)
     const [waterToMixUnit, setWaterToMixUnit] = useState('mL');
     const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('mL')
     const [volumeUnit, setVolumeUnit] = useState('oz')
+
+    useEffect(() => {
+        readBool('targetCaloriesPerOz', setTargetCaloriesPerOz);
+        readValue('waterToMixUnit', setWaterToMixUnit);
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
+        readValue('volumeUnit', setVolumeUnit);
+    }, [])
 
     return (
         <View style={styles.container}>
 
             <View style={styles.item}>
                 <UnitSelector
+                    displayName='Target Calories'
+                    selected={targetCaloriesPerOz ? 'Use Per Oz' : ''}
+                    options={['Use Per Oz']}
+                    onSelectOption={() => storeValue('targetCaloriesPerOz', setTargetCaloriesPerOz, !targetCaloriesPerOz)}
+                />
+            </View>
+
+            <View style={styles.item}>
+                <UnitSelector
                     displayName='Water to Mix'
                     selected={waterToMixUnit}
                     options={['oz', 'mL']}
-                    onSelectOption={x => setWaterToMixUnit(x)}
+                    onSelectOption={x => storeValue('waterToMixUnit', setWaterToMixUnit, x)}
                 />
             </View>
     
@@ -27,7 +45,7 @@ export default function Settings() {
                     displayName='Water Displaced'
                     selected={waterDisplacedUnit}
                     options={['oz', 'mL']}
-                    onSelectOption={x => setWaterDisplacedUnit(x)}
+                    onSelectOption={x => storeValue('waterDisplacedUnit', setWaterDisplacedUnit, x)}
                 />
             </View>
 
@@ -36,7 +54,7 @@ export default function Settings() {
                     displayName='Volume'
                     selected={volumeUnit}
                     options={['oz', 'mL']}
-                    onSelectOption={x => setVolumeUnit(x)}
+                    onSelectOption={x => storeValue('volumeUnit', setVolumeUnit, x)}
                 />
             </View>
 

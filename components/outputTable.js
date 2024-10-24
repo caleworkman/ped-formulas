@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ML_TO_OZ } from '../assets/constants.js';
 import { MY_RED, MY_BLUE, MY_WHITE } from '../assets/constants.js';
@@ -8,11 +8,21 @@ import AppText from './appText.js';
 import ExpandCircleDown from '../assets/expandCircleDown.js';
 import ExpandCircleUp from '../assets/expandCircleUp.js';
 
+import { readValue } from '../functions/storage/read.js';
+
 
 const OutputTable = (props) => {
 
     const [useOz, setUseOz] = useState(true);
     const [expanded, setExpanded] = useState(false);
+
+    const [waterToMixUnit, setWaterToMixUnit] = useState('oz');
+    const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('oz');
+
+    useEffect(() => {
+        readValue('waterToMixUnit', setWaterToMixUnit);
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
+    }, [])
 
     function convertVolume(volume, useOz) {
         if (useOz) {
@@ -67,9 +77,7 @@ const OutputTable = (props) => {
                                 <AppText><Text style={{fontWeight: "bold"}}>Total Volume</Text></AppText>
                             </td>
                             <td>
-                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
-                                    <AppText>{convertVolume(props.totalVolume, useOz)}</AppText>
-                                </Pressable>
+                                <AppText>{convertVolume(props.totalVolume, useOz)}</AppText>
                             </td>
                         </tr>
                         : <></>
@@ -81,9 +89,7 @@ const OutputTable = (props) => {
                                 <AppText><Text style={{fontWeight: "bold"}}>Water to Mix</Text></AppText>
                             </td>
                             <td>
-                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
-                                    <AppText>{convertVolume(props.waterToMixOz, useOz)}</AppText>
-                                </Pressable>
+                                <AppText>{convertVolume(props.waterToMixOz, useOz)}</AppText>
                             </td>
                         </tr>
                         : <></>
@@ -95,9 +101,7 @@ const OutputTable = (props) => {
                                 <AppText><Text style={{fontWeight: "bold"}}>Water Displaced</Text></AppText>
                             </td>
                             <td>
-                                <Pressable onPress={() =>setUseOz(prevState => !prevState)}>
-                                    <AppText>{convertVolume(props.waterDisplacedOz, useOz)}</AppText>
-                                </Pressable>
+                                <AppText>{convertVolume(props.waterDisplacedOz, useOz)}</AppText>
                             </td>
                         </tr>
                         : <></>
