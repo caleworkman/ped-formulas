@@ -1,7 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import { ML_TO_OZ } from '../assets/constants.js';
 import { MY_RED, MY_BLUE, MY_WHITE } from '../assets/constants.js';
 import AppText from './appText.js';
 
@@ -13,24 +12,12 @@ import { readValue } from '../functions/storage/read.js';
 
 const OutputTable = (props) => {
 
-    const [useOz, setUseOz] = useState(true);
     const [expanded, setExpanded] = useState(false);
 
-    const [waterToMixUnit, setWaterToMixUnit] = useState('oz');
-    const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('oz');
-
-    useEffect(() => {
-        readValue('waterToMixUnit', setWaterToMixUnit);
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
-    }, [])
-
-    function convertVolume(volume, useOz) {
-        if (useOz) {
-            return volume.toFixed(1) + " oz";
-        } else {
-            return (volume / ML_TO_OZ).toFixed(1) + " mL"
-        }
-    }
+    // useEffect(() => {
+    //     readValue('waterToMixUnit', setWaterToMixUnit);
+    //     readValue('waterDisplacedUnit', setWaterDisplacedUnit);
+    // }, [])
 
     return (
         <View style={{
@@ -77,31 +64,31 @@ const OutputTable = (props) => {
                                 <AppText><Text style={{fontWeight: "bold"}}>Total Volume</Text></AppText>
                             </td>
                             <td>
-                                <AppText>{convertVolume(props.totalVolume, useOz)}</AppText>
+                                <AppText>{props.totalVolume + " " + props.volumeUnit}</AppText>
                             </td>
                         </tr>
                         : <></>
                     }
 
-                    {typeof(props.waterToMixOz) == "number" ?
+                    {typeof(props.waterToMix) == "number" ?
                         <tr>
                             <td>
                                 <AppText><Text style={{fontWeight: "bold"}}>Water to Mix</Text></AppText>
                             </td>
                             <td>
-                                <AppText>{convertVolume(props.waterToMixOz, useOz)}</AppText>
+                                <AppText>{props.waterToMix.toFixed(1) + " " + props.waterToMixUnit}</AppText>
                             </td>
                         </tr>
                         : <></>
                     }
 
-                    {typeof(props.waterDisplacedOz) == "number" & expanded ?
+                    {typeof(props.waterDisplaced) == "number" & expanded ?
                         <tr>
                             <td>
                                 <AppText><Text style={{fontWeight: "bold"}}>Water Displaced</Text></AppText>
                             </td>
                             <td>
-                                <AppText>{convertVolume(props.waterDisplacedOz, useOz)}</AppText>
+                                <AppText>{props.waterDisplaced.toFixed(1) + " " + props.waterDisplacedUnit}</AppText>
                             </td>
                         </tr>
                         : <></>

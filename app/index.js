@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'expo-router';
 
@@ -6,7 +6,6 @@ import { PROTEIN_LIMIT_G_PER_KG } from '../assets/constants.js';
 import { MY_BLUE, MY_DARK_BLUE } from '../assets/constants.js';
 import EditSquare from '../assets/editSquare';
 
-import AppText from '../components/appText.js';
 import InputWithLabel from '../components/inputWithLabel.js';
 import CustomTextInput from '../components/customTextInput.js';
 import MixingRatioString from '../components/mixingRatioString.js';
@@ -18,9 +17,10 @@ import FormulaPicker from '../components/formulaPicker.js';
 import { calculateRatios } from '../functions/calc/calculateRatios.js';
 import { calculateCalories } from '../functions/calc/calculateCalories.js';
 import { calculateDisplacement } from '../functions/calc/calculateDisplacement.js';
+import { calculateMix } from '../functions/calc/calculateMix.js';
 import { calculateProtein } from '../functions/calc/calculateProtein.js';
 
-import { readValue } from '../functions/storage/read.js';
+import { readBool, readValue } from '../functions/storage/read.js';
 
 export default function App() {
 
@@ -30,15 +30,21 @@ export default function App() {
     const [calorieTarget, setCalorieTarget] = useState(0);
     const [caloriesPerOz, setCaloriesPerOz] = useState(false);
 
+    const [waterToMixUnit, setWaterToMixUnit] = useState('oz');
+    const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('oz');
+
     const { formula } = useContext(FormulaContext);
 
     const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(caloriesPerOz ? volumeValue * calorieTarget : calorieTarget, formula);
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
-    const displacementOz = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula);
+    const displacement = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula, waterDisplacedUnit);
     const protein = calculateProtein(calories, formula);
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
     useEffect(() => {
+        readBool('targetCaloriesPerOz', setCaloriesPerOz);
+        readValue('waterToMixUnit', setWaterToMixUnit);
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
         readValue('volumeUnit', setVolumeUnit);
     }, [])
 
@@ -46,31 +52,13 @@ export default function App() {
 
         <View style={styles.container}>
 
-            <View style={{
-                margin: '10px',
-                width: '300px',
-            }}>
+            <View style={{ margin: '10px', width: '300px' }}>
 
                 <FormulaPicker />
 
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-                    <View style={{ flexGrow: '1', marginRight: '8px' }}>
-                        <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
-                            <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
-                        </InputWithLabel>
-                    </View>
-                    <View style={{ marginBottom: '4px' }}>
-                        <Pressable
-                            onPress={() => setCaloriesPerOz(prevState => !prevState)}
-                            style={[styles.button, caloriesPerOz ? styles.pressed : styles.unpressed]}>
-                            <AppText>
-                                <Text style={{ fontSize: '16px' }}>
-                                    Per Oz
-                                </Text>
-                            </AppText>
-                        </Pressable>
-                    </View>
-                </View>
+                <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
+                    <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
+                </InputWithLabel>
 
                 <InputWithLabel label={"Volume (" + volumeUnit + ")"}>
                     <CustomTextInput inputMode='decimal' onChangeText={value => setVolumeValue(value)} />
@@ -104,7 +92,7 @@ export default function App() {
                                         numTbsps: numTbsps,
                                         numTsps: numTsps,
                                         bodyWeight: bodyWeight,
-                                        water: parseFloat((volumeValue - displacementOz).toFixed(1))
+                                        water: parseFloat((volumeValue - displacement).toFixed(1))
                                     }
                                 }}
                             >
@@ -123,8 +111,11 @@ export default function App() {
             <OutputTable
                 calories={calories}
                 calorieDifference={calorieTarget ? Math.abs(100 * (calories - calorieTarget) / calorieTarget) : 0}
-                waterToMixOz={volumeValue - displacementOz > 0 ? volumeValue - displacementOz : 0}
-                waterDisplacedOz={displacementOz}
+                waterToMix={calculateMix(volumeValue, volumeUnit, displacement, waterDisplacedUnit, waterToMixUnit)}
+                waterToMixUnit={waterToMixUnit}
+                waterDisplaced={displacement}
+                waterDisplacedUnit={waterDisplacedUnit}
+                volumeUnit={volumeUnit}
                 protein={protein}
                 proteinPerKg={bodyWeight ? (protein / bodyWeight).toFixed(1) : "-"}
                 acceptableProtein={acceptableProtein}
