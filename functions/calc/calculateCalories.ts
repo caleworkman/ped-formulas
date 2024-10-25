@@ -1,4 +1,9 @@
-export function calculateCalories(numCups, numScoops, numTbsps, numTsps, formula) {
+export function calculateCalories(
+    numCups: number, 
+    numScoops: number, 
+    numTbsps: number, 
+    numTsps: number, 
+    formula) {
 
     if (!formula) {
         return 0

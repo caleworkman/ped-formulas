@@ -1,4 +1,4 @@
-export function calculateProtein(calories, formula) {
+export function calculateProtein(calories: number, formula) {
     if (!formula) {
         return 0
     }

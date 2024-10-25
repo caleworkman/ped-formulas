@@ -1,4 +1,4 @@
-export function calculateRatios(calories, formula) {
+export function calculateRatios(calories: number, formula) {
 
     let remainder = calories;
 

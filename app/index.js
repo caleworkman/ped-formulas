@@ -14,11 +14,11 @@ import OutputTable from '../components/outputTable.js';
 import FormulaContext from '../components/formulaContext.js';
 import FormulaPicker from '../components/formulaPicker.js';
 
-import { calculateRatios } from '../functions/calc/calculateRatios.js';
-import { calculateCalories } from '../functions/calc/calculateCalories.js';
-import { calculateDisplacement } from '../functions/calc/calculateDisplacement.js';
-import { calculateMix } from '../functions/calc/calculateMix.js';
-import { calculateProtein } from '../functions/calc/calculateProtein.js';
+import { calculateRatios } from '../functions/calc/calculateRatios.ts';
+import { calculateCalories } from '../functions/calc/calculateCalories.ts';
+import { calculateDisplacement } from '../functions/calc/calculateDisplacement.ts';
+import { calculateMix } from '../functions/calc/calculateMix.ts';
+import { calculateProtein } from '../functions/calc/calculateProtein.ts';
 
 import { readBool, readValue } from '../functions/storage/read.js';
 

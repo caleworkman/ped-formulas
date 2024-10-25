@@ -1,10 +1,16 @@
 import { ML_TO_OZ } from "../../assets/constants";
 
-export function calculateMix(volumeValue, volumeUnit, displacementValue, displacementUnit, outputUnit) {
+export function calculateMix(
+    volumeValue: number, 
+    volumeUnit: string, 
+    displacementValue: number, 
+    displacementUnit: string, 
+    outputUnit: string) {
+        
     // Returns the unit in outputUnit
 
-    if ((outputUnit.toLowerCase() != 'oz') || (outputUnit.toLowerCase() != 'ml')) {
-        console.error('Bad output unit.');
+    if ((outputUnit.toLowerCase() != 'oz') && (outputUnit.toLowerCase() != 'ml')) {
+        console.error('Bad output unit in calculateMix.', outputUnit);
     }
 
     let volume = volumeValue;

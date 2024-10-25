@@ -1,11 +1,22 @@
 import { ML_TO_OZ } from "../../assets/constants";
 
-export function calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula, outputUnit) {
+export function calculateDisplacement(
+    numCups: number, 
+    numScoops: number, 
+    numTbsps: number, 
+    numTsps: number, 
+    formula, 
+    outputUnit: string) {
+        
     // These calculations are done in oz
     // Returns the unit in outputUnit
 
     if (!formula) {
         return 0;
+    }
+
+    if ((outputUnit.toLowerCase() != 'oz') && (outputUnit.toLowerCase() != 'ml')) {
+        console.error('Bad output unit in calculateDisplacement.', outputUnit);
     }
 
     let per_cup = 0;
@@ -33,6 +44,6 @@ export function calculateDisplacement(numCups, numScoops, numTbsps, numTsps, for
     } else if (outputUnit.toLowerCase() == 'oz') {
         return ML_TO_OZ * (per_cup + per_scoop + per_tbsp + per_tsp);
     } else {
-        console.log('Invalid unit')
+        console.error('Invalid unit. This should be unreachable.')
     }
  }

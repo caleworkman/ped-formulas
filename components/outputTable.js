@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { MY_RED, MY_BLUE, MY_WHITE } from '../assets/constants.js';
 import AppText from './appText.js';
@@ -7,17 +7,9 @@ import AppText from './appText.js';
 import ExpandCircleDown from '../assets/expandCircleDown.js';
 import ExpandCircleUp from '../assets/expandCircleUp.js';
 
-import { readValue } from '../functions/storage/read.js';
-
-
 const OutputTable = (props) => {
 
     const [expanded, setExpanded] = useState(false);
-
-    // useEffect(() => {
-    //     readValue('waterToMixUnit', setWaterToMixUnit);
-    //     readValue('waterDisplacedUnit', setWaterDisplacedUnit);
-    // }, [])
 
     return (
         <View style={{
