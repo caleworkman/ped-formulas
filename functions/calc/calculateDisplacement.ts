@@ -6,7 +6,7 @@ export function calculateDisplacement(
     numTbsps: number, 
     numTsps: number, 
     formula, 
-    outputUnit: string) {
+    outputUnit: string) : number {
         
     // These calculations are done in oz
     // Returns the unit in outputUnit

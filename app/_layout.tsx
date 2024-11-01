@@ -9,15 +9,9 @@ import { useEffect, useState } from 'react';
 
 import data from '../assets/formulaDetails.json';
 
-import { initStorage } from '../functions/storage/init';
-
 export default function Layout() {
 
     const [formula, setFormula] = useState(data.formulas[0]);
-
-    useEffect(() => {
-      initStorage()
-    }, [])
 
     return (
         <ScrollView style={styles.container}>

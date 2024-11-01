@@ -44,9 +44,9 @@ export default function Adjust() {
     const totalVolume = calculateTotalVolume(waterToMix, waterToMixUnit, displacement, waterDisplacedUnit, volumeUnit);
 
     useEffect(() => {
-        readValue('waterToMixUnit', setWaterToMixUnit);
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
-        readValue('volumeUnit', setVolumeUnit);
+        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
+        readValue('volumeUnit', setVolumeUnit, 'oz');
     }, [])
 
     return (
@@ -60,7 +60,7 @@ export default function Adjust() {
                     <CustomTextInput 
                         value={waterToMix}
                         inputMode='decimal' 
-                        onChangeText={value => setWaterToMix(value)}
+                        onChangeText={value => setWaterToMix(parseFloat(value))}
                         clearTextOnFocus={true}
                     />
                 </InputWithLabel>
@@ -69,7 +69,7 @@ export default function Adjust() {
                     <CustomTextInput 
                         value={bodyWeight}
                         inputMode='decimal' 
-                        onChangeText={value => setBodyWeight(value)} 
+                        onChangeText={value => setBodyWeight(parseFloat(value))} 
                         clearTextOnFocus={true}
                     />
                 </InputWithLabel>

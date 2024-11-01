@@ -14,9 +14,9 @@ export default function Settings() {
 
     useEffect(() => {
         readBool('targetCaloriesPerOz', setTargetCaloriesPerOz);
-        readValue('waterToMixUnit', setWaterToMixUnit);
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
-        readValue('volumeUnit', setVolumeUnit);
+        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
+        readValue('volumeUnit', setVolumeUnit, 'oz');
     }, [])
 
     return (

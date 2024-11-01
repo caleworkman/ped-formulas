@@ -64,7 +64,7 @@ export default function App() {
                 <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
                     <CustomTextInput 
                         inputMode='decimal' 
-                        onChangeText={value => setCalorieTarget(value)} 
+                        onChangeText={value => setCalorieTarget(parseFloat(value))} 
                         clearTextOnFocus={true}
                     />
                 </InputWithLabel>
@@ -72,7 +72,7 @@ export default function App() {
                 <InputWithLabel label={"Volume (" + volumeUnit + ")"}>
                     <CustomTextInput 
                         inputMode='decimal' 
-                        onChangeText={value => setVolumeValue(value)} 
+                        onChangeText={value => setVolumeValue(parseFloat(value))} 
                         clearTextOnFocus={true}
                     />
                 </InputWithLabel>
@@ -80,7 +80,7 @@ export default function App() {
                 <InputWithLabel label="Body Weight (kg)">
                     <CustomTextInput 
                         inputMode='decimal' 
-                        onChangeText={value => setBodyWeight(value)}
+                        onChangeText={value => setBodyWeight(parseFloat(value))}
                         clearTextOnFocus={true}
                     />
                 </InputWithLabel>

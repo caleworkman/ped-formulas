@@ -3,7 +3,7 @@ export function calculateCalories(
     numScoops: number, 
     numTbsps: number, 
     numTsps: number, 
-    formula) {
+    formula) : number {
 
     if (!formula) {
         return 0
