@@ -49,9 +49,6 @@ export default function Adjust() {
         readValue('volumeUnit', setVolumeUnit);
     }, [])
 
-    // TODO: somehow waterToMix is being cast to a string
-    console.log('adjust', waterToMix, totalVolume, volumeUnit)
-
     return (
         <View style={styles.container}>
 
@@ -131,7 +128,7 @@ export default function Adjust() {
 
             <OutputTable
                 calories={calories}
-                totalVolume={totalVolume}
+                totalVolume={parseFloat(totalVolume.toFixed(1))}
                 volumeUnit={volumeUnit}
                 waterDisplaced={displacement}
                 waterDisplacedUnit={waterDisplacedUnit}

@@ -5,11 +5,9 @@ export function calculateTotalVolume(
     waterToMixUnit: string, 
     displacementValue: number, 
     displacementUnit: string, 
-    outputUnit: string) {
+    outputUnit: string) : number {
 
     // Returns the unit in outputUnit
-
-    console.log(waterToMix, waterToMixUnit, displacementValue, displacementUnit, outputUnit)
 
     if ((outputUnit.toLowerCase() != 'oz') && (outputUnit.toLowerCase() != 'ml')) {
         console.error('Bad output unit in calculateTotalVolume.', outputUnit);

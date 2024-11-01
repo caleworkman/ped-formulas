@@ -24,14 +24,16 @@ import { readBool, readValue } from '../functions/storage/read.js';
 
 export default function App() {
 
+    // State Variables
     const [bodyWeight, setBodyWeight] = useState(0);
     const [volumeValue, setVolumeValue] = useState(0);
-    const [volumeUnit, setVolumeUnit] = useState('oz');
     const [calorieTarget, setCalorieTarget] = useState(0);
-    const [caloriesPerOz, setCaloriesPerOz] = useState(false);
 
+    // Settings
+    const [caloriesPerOz, setCaloriesPerOz] = useState(false);
     const [waterToMixUnit, setWaterToMixUnit] = useState('oz');
     const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('oz');
+    const [volumeUnit, setVolumeUnit] = useState('oz');
 
     const { formula } = useContext(FormulaContext);
 
@@ -42,11 +44,14 @@ export default function App() {
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
     useEffect(() => {
+        // TODO: MultiGet
         readBool('targetCaloriesPerOz', setCaloriesPerOz);
-        readValue('waterToMixUnit', setWaterToMixUnit);
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit);
-        readValue('volumeUnit', setVolumeUnit);
+        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
+        readValue('volumeUnit', setVolumeUnit, 'oz');
     }, [])
+
+    const waterToMix = calculateMix(volumeValue, volumeUnit, displacement, waterDisplacedUnit, waterToMixUnit)
 
     return (
 
@@ -57,15 +62,27 @@ export default function App() {
                 <FormulaPicker />
 
                 <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setCalorieTarget(value)} />
+                    <CustomTextInput 
+                        inputMode='decimal' 
+                        onChangeText={value => setCalorieTarget(value)} 
+                        clearTextOnFocus={true}
+                    />
                 </InputWithLabel>
 
                 <InputWithLabel label={"Volume (" + volumeUnit + ")"}>
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setVolumeValue(value)} />
+                    <CustomTextInput 
+                        inputMode='decimal' 
+                        onChangeText={value => setVolumeValue(value)} 
+                        clearTextOnFocus={true}
+                    />
                 </InputWithLabel>
 
                 <InputWithLabel label="Body Weight (kg)">
-                    <CustomTextInput inputMode='decimal' onChangeText={value => setBodyWeight(value)} />
+                    <CustomTextInput 
+                        inputMode='decimal' 
+                        onChangeText={value => setBodyWeight(value)}
+                        clearTextOnFocus={true}
+                    />
                 </InputWithLabel>
 
             </View>
@@ -92,7 +109,7 @@ export default function App() {
                                         numTbsps: numTbsps,
                                         numTsps: numTsps,
                                         bodyWeight: bodyWeight,
-                                        water: parseFloat((volumeValue - displacement).toFixed(1))
+                                        water: parseFloat(waterToMix.toFixed(1))
                                     }
                                 }}
                             >
@@ -111,7 +128,7 @@ export default function App() {
             <OutputTable
                 calories={calories}
                 calorieDifference={calorieTarget ? Math.abs(100 * (calories - calorieTarget) / calorieTarget) : 0}
-                waterToMix={calculateMix(volumeValue, volumeUnit, displacement, waterDisplacedUnit, waterToMixUnit)}
+                waterToMix={waterToMix}
                 waterToMixUnit={waterToMixUnit}
                 waterDisplaced={displacement}
                 waterDisplacedUnit={waterDisplacedUnit}

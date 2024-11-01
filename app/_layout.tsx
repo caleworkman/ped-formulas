@@ -5,14 +5,19 @@ import Header from "../components/header";
 import { MY_GRAY } from '../assets/constants.js';
 
 import FormulaContext from '../components/formulaContext.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import data from '../assets/formulaDetails.json';
 
+import { initStorage } from '../functions/storage/init';
 
 export default function Layout() {
 
     const [formula, setFormula] = useState(data.formulas[0]);
+
+    useEffect(() => {
+      initStorage()
+    }, [])
 
     return (
         <ScrollView style={styles.container}>
