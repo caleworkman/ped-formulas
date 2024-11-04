@@ -1,29 +1,30 @@
 import { ML_TO_OZ } from "../../assets/constants";
+import { VolumeUnit } from "../formula/VolumeUnits";
 
 export function calculateTotalVolume(
     waterToMix: number, 
-    waterToMixUnit: string, 
+    waterToMixUnit: VolumeUnit, 
     displacementValue: number, 
-    displacementUnit: string, 
-    outputUnit: string) : number {
+    displacementUnit: VolumeUnit, 
+    outputUnit: VolumeUnit) : number {
 
     // Returns the unit in outputUnit
 
-    if ((outputUnit.toLowerCase() != 'oz') && (outputUnit.toLowerCase() != 'ml')) {
+    if ((outputUnit!= VolumeUnit.OZ) && (outputUnit != VolumeUnit.ML)) {
         console.error('Bad output unit in calculateTotalVolume.', outputUnit);
     }
 
     let mix = waterToMix;
-    if ((waterToMixUnit.toLowerCase() == 'oz') && (outputUnit.toLowerCase() == 'ml')) {
+    if ((waterToMixUnit == VolumeUnit.OZ) && (outputUnit == VolumeUnit.ML)) {
         mix = mix / ML_TO_OZ;
-    } else if ((waterToMixUnit.toLowerCase() == 'ml') && (outputUnit.toLowerCase() == 'oz')) {
+    } else if ((waterToMixUnit == VolumeUnit.ML) && (outputUnit == VolumeUnit.OZ)) {
         mix = ML_TO_OZ * mix;
     }
    
     let displacement = displacementValue;
-    if ((displacementUnit.toLowerCase() == 'oz') && (outputUnit.toLowerCase() == 'ml')) {
+    if ((displacementUnit == VolumeUnit.OZ) && (outputUnit == VolumeUnit.ML)) {
         displacement = displacement / ML_TO_OZ;
-    } else if ((displacementUnit.toLowerCase() == 'ml') && (outputUnit.toLowerCase() == 'oz')) {
+    } else if ((displacementUnit == VolumeUnit.ML) && (outputUnit == VolumeUnit.OZ)) {
         displacement = ML_TO_OZ * displacement;
     }
 

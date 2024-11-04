@@ -1,29 +1,30 @@
 import { ML_TO_OZ } from "../../assets/constants";
+import { VolumeUnit } from "../formula/VolumeUnits";
 
 export function calculateMix(
     volumeValue: number, 
-    volumeUnit: string, 
+    volumeUnit: VolumeUnit, 
     displacementValue: number, 
-    displacementUnit: string, 
-    outputUnit: string) {
+    displacementUnit: VolumeUnit, 
+    outputUnit: VolumeUnit) {
         
     // Returns the unit in outputUnit
 
-    if ((outputUnit.toLowerCase() != 'oz') && (outputUnit.toLowerCase() != 'ml')) {
+    if ((outputUnit != VolumeUnit.OZ) && (outputUnit != VolumeUnit.ML)) {
         console.error('Bad output unit in calculateMix.', outputUnit);
     }
 
     let volume = volumeValue;
-    if ((volumeUnit.toLowerCase() == 'oz') && (outputUnit.toLowerCase() == 'ml')) {
+    if ((volumeUnit == VolumeUnit.OZ) && (outputUnit == VolumeUnit.ML)) {
         volume = volume / ML_TO_OZ;
-    } else if ((volumeUnit.toLowerCase() == 'ml') && (outputUnit.toLowerCase() == 'oz')) {
+    } else if ((volumeUnit == VolumeUnit.ML) && (outputUnit == VolumeUnit.OZ)) {
         volume = ML_TO_OZ * volume;
     }
    
     let displacement = displacementValue;
-    if ((displacementUnit.toLowerCase() == 'oz') && (outputUnit.toLowerCase() == 'ml')) {
+    if ((displacementUnit == VolumeUnit.OZ) && (outputUnit == VolumeUnit.ML)) {
         displacement = displacement / ML_TO_OZ;
-    } else if ((displacementUnit.toLowerCase() == 'ml') && (outputUnit.toLowerCase() == 'oz')) {
+    } else if ((displacementUnit == VolumeUnit.ML) && (outputUnit == VolumeUnit.OZ)) {
         displacement = ML_TO_OZ * displacement;
     }
 
