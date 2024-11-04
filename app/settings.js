@@ -5,18 +5,44 @@ import UnitSelector from '../components/unitSelector';
 import { readBool, readValue } from '../functions/storage/read.js';
 import { storeValue } from '../functions/storage/store.js';
 
+import { VolumeUnit } from '../functions/formula/VolumeUnits';
+
 export default function Settings() {
 
     const [targetCaloriesPerOz, setTargetCaloriesPerOz] = useState(false)
-    const [waterToMixUnit, setWaterToMixUnit] = useState('mL');
-    const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('mL')
-    const [volumeUnit, setVolumeUnit] = useState('oz')
+    const [waterToMixUnit, setWaterToMixUnit] = useState(VolumeUnit.ML);
+    const [waterDisplacedUnit, setWaterDisplacedUnit] = useState(VolumeUnit.ML)
+    const [volumeUnit, setVolumeUnit] = useState(VolumeUnit.OZ)
 
     useEffect(() => {
-        readBool('targetCaloriesPerOz', setTargetCaloriesPerOz);
-        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
-        readValue('volumeUnit', setVolumeUnit, 'oz');
+        readBool('targetCaloriesPerOz').then(result => {
+            setTargetCaloriesPerOz(result);
+        });
+
+        readValue('waterToMixUnit', setWaterToMixUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterToMixUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterToMixUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterDisplacedUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterDisplacedUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('volumeUnit', setVolumeUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setVolumeUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setVolumeUnit(VolumeUnit.ML);
+            }
+        });
+
     }, [])
 
     return (
@@ -35,7 +61,7 @@ export default function Settings() {
                 <UnitSelector
                     displayName='Water to Mix'
                     selected={waterToMixUnit}
-                    options={['oz', 'mL']}
+                    options={[VolumeUnit.OZ, VolumeUnit.ML]}
                     onSelectOption={x => storeValue('waterToMixUnit', setWaterToMixUnit, x)}
                 />
             </View>
@@ -44,7 +70,7 @@ export default function Settings() {
                 <UnitSelector
                     displayName='Water Displaced'
                     selected={waterDisplacedUnit}
-                    options={['oz', 'mL']}
+                    options={[VolumeUnit.OZ, VolumeUnit.ML]}
                     onSelectOption={x => storeValue('waterDisplacedUnit', setWaterDisplacedUnit, x)}
                 />
             </View>
@@ -53,7 +79,7 @@ export default function Settings() {
                 <UnitSelector
                     displayName='Volume'
                     selected={volumeUnit}
-                    options={['oz', 'mL']}
+                    options={[VolumeUnit.OZ, VolumeUnit.ML]}
                     onSelectOption={x => storeValue('volumeUnit', setVolumeUnit, x)}
                 />
             </View>

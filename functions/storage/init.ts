@@ -1,14 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { VolumeUnit } from '../functions/formula/VolumeUnits';
+
+
 export const initStorage = async () => {
 
     // This is clearing stuff in useEffect, don't use it
 
     const defaults = {
         'targetCaloriesPerOz': false,
-        'waterToMixUnit': 'oz',
-        'waterDisplacedUnit': 'oz',
-        'volumeUnit': 'oz'
+        'waterToMixUnit': VolumeUnit.OZ,
+        'waterDisplacedUnit': VolumeUnit.OZ,
+        'volumeUnit': VolumeUnit.OZ
     }
 
     try {

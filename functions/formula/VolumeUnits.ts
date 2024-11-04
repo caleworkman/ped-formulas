@@ -1,4 +1,4 @@
 export enum VolumeUnit {
-    OZ = 'OZ',
-    ML = 'ML'
+    OZ = 'oz',
+    ML = 'mL'
 }

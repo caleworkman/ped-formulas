@@ -21,6 +21,7 @@ import { calculateMix } from '../functions/calc/calculateMix.ts';
 import { calculateProtein } from '../functions/calc/calculateProtein.ts';
 
 import { readBool, readValue } from '../functions/storage/read.js';
+import { VolumeUnit } from '../functions/formula/VolumeUnits';
 
 export default function App() {
 
@@ -45,10 +46,33 @@ export default function App() {
 
     useEffect(() => {
         // TODO: MultiGet
-        readBool('targetCaloriesPerOz', setCaloriesPerOz);
-        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
-        readValue('volumeUnit', setVolumeUnit, 'oz');
+        readBool('targetCaloriesPerOz').then(result => {
+            setCaloriesPerOz(result);
+        });
+
+        readValue('waterToMixUnit', setWaterToMixUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterToMixUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterToMixUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('waterDisplacedUnit', setWaterDisplacedUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterDisplacedUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterDisplacedUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('volumeUnit', setVolumeUnit, VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setVolumeUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setVolumeUnit(VolumeUnit.ML);
+            }
+        });
     }, [])
 
     const waterToMix = calculateMix(volumeValue, volumeUnit, displacement, waterDisplacedUnit, waterToMixUnit)

@@ -7,16 +7,16 @@ const FormulaMissingWarning = (props) => {
     const formula = props.formula;
 
     const missing = [];
-    if (typeof(formula?.units['cup'].calories) != 'number') {
+    if (typeof(formula.cup.calories) != 'number') {
         missing.push('cup');
     }
-    if (typeof(formula?.units['scoop'].calories) != 'number') {
+    if (typeof(formula.scoop.calories) != 'number') {
         missing.push('scoop');
     }
-    if (typeof(formula?.units['tbsp'].calories) != 'number') {
+    if (typeof(formula.tbsp.calories) != 'number') {
         missing.push('tbsp');
     }
-    if (typeof(formula?.units['tsp'].calories) != 'number') {
+    if (typeof(formula.tsp.calories) != 'number') {
         missing.push('tsp');
     }
 

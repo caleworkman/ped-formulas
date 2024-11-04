@@ -5,13 +5,13 @@ import Header from "../components/header";
 import { MY_GRAY } from '../assets/constants.js';
 
 import FormulaContext from '../components/formulaContext.js';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import data from '../assets/formulaDetails.json';
+import { formulas } from '../assets/formulas';
 
 export default function Layout() {
 
-    const [formula, setFormula] = useState(data.formulas[0]);
+    const [formula, setFormula] = useState(formulas[0]);
 
     return (
         <ScrollView style={styles.container}>
