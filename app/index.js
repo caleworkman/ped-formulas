@@ -15,7 +15,7 @@ import FormulaContext from '../components/formulaContext.js';
 import FormulaPicker from '../components/formulaPicker.js';
 
 import { calculateRatios } from '../functions/calc/calculateRatios.ts';
-import { calculateCalories } from '../functions/calc/calculateCalories.ts';
+import { calculateCalories, calculateCaloriesFromPerVolume } from '../functions/calc/calculateCalories.ts';
 import { calculateDisplacement } from '../functions/calc/calculateDisplacement.ts';
 import { calculateMix } from '../functions/calc/calculateMix.ts';
 import { calculateProtein } from '../functions/calc/calculateProtein.ts';
@@ -28,7 +28,7 @@ export default function App() {
     // State Variables
     const [bodyWeight, setBodyWeight] = useState(0);
     const [volumeValue, setVolumeValue] = useState(0);
-    const [calorieTarget, setCalorieTarget] = useState(0);
+    const [calorieTarget, setCalorieTarget] = useState(0);  // this could be a per Oz value
 
     // Settings
     const [targetCaloriesPerOz, setTargetCaloriesPerOz] = useState(false);
@@ -38,7 +38,10 @@ export default function App() {
 
     const { formula } = useContext(FormulaContext);
 
-    const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(targetCaloriesPerOz ? volumeValue * calorieTarget : calorieTarget, formula);
+    // Calculte and use this behind the scenes in case the user uses per oz
+    const actualCalorieTarget = targetCaloriesPerOz ? calculateCaloriesFromPerVolume(calorieTarget, volumeValue, volumeUnit) : calorieTarget
+
+    const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(actualCalorieTarget, formula);
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
     const displacement = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula, waterDisplacedUnit);
     const protein = calculateProtein(calories, formula);
@@ -130,7 +133,7 @@ export default function App() {
 
             <OutputTable
                 calories={calories}
-                calorieDifference={calorieTarget ? Math.abs(100 * (calories - calorieTarget) / calorieTarget) : 0}
+                calorieDifference={calorieTarget ? Math.abs(100 * (calories - actualCalorieTarget) / actualCalorieTarget) : 0}
                 waterToMix={waterToMix}
                 waterToMixUnit={waterToMixUnit}
                 waterDisplaced={displacement}

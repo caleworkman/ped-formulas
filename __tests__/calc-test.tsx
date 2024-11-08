@@ -1,4 +1,4 @@
-import { calculateCalories } from "../functions/calc/calculateCalories";
+import { calculateCalories, calculateCaloriesFromPerVolume } from "../functions/calc/calculateCalories";
 import { calculateDisplacement } from "../functions/calc/calculateDisplacement";
 import { calculateMix } from "../functions/calc/calculateMix";
 import { calculateProtein } from "../functions/calc/calculateProtein";
@@ -60,6 +60,11 @@ test('Calculate calories', () => {
     expect(calculateCalories(1, 3, 5, -1, nutramigen)).toBe(0);
 
 });
+
+test('Calculate calories from per oz', () => {
+    expect(calculateCaloriesFromPerVolume(100, 10, VolumeUnit.OZ)).toBe(1000);
+    expect(calculateCaloriesFromPerVolume(100, 295.735, VolumeUnit.ML)).toBeCloseTo(1000, 1);
+})
 
 test('Calculate displacement', () => {
     // per unit  
