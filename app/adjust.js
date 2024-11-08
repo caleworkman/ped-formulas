@@ -18,6 +18,8 @@ import OutputTable from '../components/outputTable.js';
 import { useLocalSearchParams } from 'expo-router';
 import { readValue } from '../functions/storage/read.js';
 
+import { VolumeUnit } from '../functions/formula/VolumeUnits';
+
 
 export default function Adjust() {
 
@@ -44,9 +46,30 @@ export default function Adjust() {
     const totalVolume = calculateTotalVolume(waterToMix, waterToMixUnit, displacement, waterDisplacedUnit, volumeUnit);
 
     useEffect(() => {
-        readValue('waterToMixUnit', setWaterToMixUnit, 'oz');
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit, 'oz');
-        readValue('volumeUnit', setVolumeUnit, 'oz');
+        // TODO: MultiGet
+        readValue('waterToMixUnit', VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterToMixUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterToMixUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('waterDisplacedUnit', VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setWaterDisplacedUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setWaterDisplacedUnit(VolumeUnit.ML);
+            }
+        });
+
+        readValue('volumeUnit', VolumeUnit.OZ).then(unit => {
+            if (unit.toLowerCase() == 'oz') {
+                setVolumeUnit(VolumeUnit.OZ);
+            } else if (unit.toLowerCase() == 'ml') {
+                setVolumeUnit(VolumeUnit.ML);
+            }
+        });
     }, [])
 
     return (

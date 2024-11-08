@@ -19,7 +19,7 @@ export default function Settings() {
             setTargetCaloriesPerOz(result);
         });
 
-        readValue('waterToMixUnit', setWaterToMixUnit, VolumeUnit.OZ).then(unit => {
+        readValue('waterToMixUnit', VolumeUnit.OZ).then(unit => {
             if (unit.toLowerCase() == 'oz') {
                 setWaterToMixUnit(VolumeUnit.OZ);
             } else if (unit.toLowerCase() == 'ml') {
@@ -27,7 +27,7 @@ export default function Settings() {
             }
         });
 
-        readValue('waterDisplacedUnit', setWaterDisplacedUnit, VolumeUnit.OZ).then(unit => {
+        readValue('waterDisplacedUnit', VolumeUnit.OZ).then(unit => {
             if (unit.toLowerCase() == 'oz') {
                 setWaterDisplacedUnit(VolumeUnit.OZ);
             } else if (unit.toLowerCase() == 'ml') {
@@ -35,7 +35,7 @@ export default function Settings() {
             }
         });
 
-        readValue('volumeUnit', setVolumeUnit, VolumeUnit.OZ).then(unit => {
+        readValue('volumeUnit', VolumeUnit.OZ).then(unit => {
             if (unit.toLowerCase() == 'oz') {
                 setVolumeUnit(VolumeUnit.OZ);
             } else if (unit.toLowerCase() == 'ml') {
