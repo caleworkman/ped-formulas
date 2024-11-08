@@ -20,7 +20,7 @@ import { calculateDisplacement } from '../functions/calc/calculateDisplacement.t
 import { calculateMix } from '../functions/calc/calculateMix.ts';
 import { calculateProtein } from '../functions/calc/calculateProtein.ts';
 
-import { readBool, readValue } from '../functions/storage/read.js';
+import { getMultiple } from '../functions/storage/read.ts';
 import { VolumeUnit } from '../functions/formula/VolumeUnits';
 
 export default function App() {
@@ -31,48 +31,27 @@ export default function App() {
     const [calorieTarget, setCalorieTarget] = useState(0);
 
     // Settings
-    const [caloriesPerOz, setCaloriesPerOz] = useState(false);
+    const [targetCaloriesPerOz, setTargetCaloriesPerOz] = useState(false);
     const [waterToMixUnit, setWaterToMixUnit] = useState('oz');
     const [waterDisplacedUnit, setWaterDisplacedUnit] = useState('oz');
     const [volumeUnit, setVolumeUnit] = useState('oz');
 
     const { formula } = useContext(FormulaContext);
 
-    const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(caloriesPerOz ? volumeValue * calorieTarget : calorieTarget, formula);
+    const { numCups, numScoops, numTbsps, numTsps } = calculateRatios(targetCaloriesPerOz ? volumeValue * calorieTarget : calorieTarget, formula);
     const calories = calculateCalories(numCups, numScoops, numTbsps, numTsps, formula);
     const displacement = calculateDisplacement(numCups, numScoops, numTbsps, numTsps, formula, waterDisplacedUnit);
     const protein = calculateProtein(calories, formula);
     const acceptableProtein = protein / bodyWeight <= PROTEIN_LIMIT_G_PER_KG;
 
     useEffect(() => {
-        // TODO: MultiGet
-        readBool('targetCaloriesPerOz').then(result => {
-            setCaloriesPerOz(result);
-        });
-
-        readValue('waterToMixUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setWaterToMixUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setWaterToMixUnit(VolumeUnit.ML);
-            }
-        });
-
-        readValue('waterDisplacedUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setWaterDisplacedUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setWaterDisplacedUnit(VolumeUnit.ML);
-            }
-        });
-
-        readValue('volumeUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setVolumeUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setVolumeUnit(VolumeUnit.ML);
-            }
-        });
+        getMultiple(['targetCaloriesPerOz', 'waterToMixUnit', 'waterDisplacedUnit', 'volumeUnit']).then(pairs => {   
+            // these get returned in order
+            setTargetCaloriesPerOz(pairs[0][1].toLowerCase() == 'true');
+            setWaterToMixUnit(VolumeUnit.fromString(pairs[1][1]));
+            setWaterDisplacedUnit(VolumeUnit.fromString(pairs[2][1]));
+            setVolumeUnit(VolumeUnit.fromString(pairs[3][1]));
+        })
     }, [])
 
     const waterToMix = calculateMix(volumeValue, volumeUnit, displacement, waterDisplacedUnit, waterToMixUnit)
@@ -85,7 +64,7 @@ export default function App() {
 
                 <FormulaPicker />
 
-                <InputWithLabel label={caloriesPerOz ? "Calories / oz" : "Calories"}>
+                <InputWithLabel label={targetCaloriesPerOz ? "Calories / oz" : "Calories"}>
                     <CustomTextInput 
                         inputMode='decimal' 
                         onChangeText={value => setCalorieTarget(parseFloat(value))} 

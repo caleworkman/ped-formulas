@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import UnitSelector from '../components/unitSelector';
-import { readBool, readValue } from '../functions/storage/read.js';
+import { getMultiple } from '../functions/storage/read';
 import { storeValue } from '../functions/storage/store.js';
 
 import { VolumeUnit } from '../functions/formula/VolumeUnits';
@@ -15,34 +15,13 @@ export default function Settings() {
     const [volumeUnit, setVolumeUnit] = useState(VolumeUnit.OZ)
 
     useEffect(() => {
-        readBool('targetCaloriesPerOz').then(result => {
-            setTargetCaloriesPerOz(result);
-        });
-
-        readValue('waterToMixUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setWaterToMixUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setWaterToMixUnit(VolumeUnit.ML);
-            }
-        });
-
-        readValue('waterDisplacedUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setWaterDisplacedUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setWaterDisplacedUnit(VolumeUnit.ML);
-            }
-        });
-
-        readValue('volumeUnit', VolumeUnit.OZ).then(unit => {
-            if (unit.toLowerCase() == 'oz') {
-                setVolumeUnit(VolumeUnit.OZ);
-            } else if (unit.toLowerCase() == 'ml') {
-                setVolumeUnit(VolumeUnit.ML);
-            }
-        });
-
+        getMultiple(['targetCaloriesPerOz', 'waterToMixUnit', 'waterDisplacedUnit', 'volumeUnit']).then(pairs => {   
+            // these get returned in order
+            setTargetCaloriesPerOz(pairs[0][1].toLowerCase() == 'true');
+            setWaterToMixUnit(VolumeUnit.fromString(pairs[1][1]));
+            setWaterDisplacedUnit(VolumeUnit.fromString(pairs[2][1]));
+            setVolumeUnit(VolumeUnit.fromString(pairs[3][1]));
+        })
     }, [])
 
     return (
