@@ -5,6 +5,7 @@ import { MY_RED } from '../assets/constants.js';
 const FormulaMissingWarning = (props) => {
 
     const formula = props.formula;
+    console.log(formula);
 
     const missing = [];
     if (typeof(formula.cup.calories) != 'number') {
@@ -18,6 +19,9 @@ const FormulaMissingWarning = (props) => {
     }
     if (typeof(formula.tsp.calories) != 'number') {
         missing.push('tsp');
+    }
+    if (typeof(formula.g_protein_per_100_cal) != 'number') {
+        missing.push('protein');
     }
 
     if (missing === undefined || missing.length == 0) {
@@ -34,7 +38,7 @@ const FormulaMissingWarning = (props) => {
             backgroundColor: MY_RED }}>
             
             <AppText>
-                <Text style={{fontSize: "14px"}}>Formula is missing: </Text>
+                <Text style={{ fontSize: "14px" }}>Formula is missing: </Text>
                 <Text style={{ fontWeight: 'bold', fontSize: "14px" }}>
                     {missing.join(', ')}
                 </Text>
