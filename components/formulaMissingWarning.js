@@ -5,7 +5,6 @@ import { MY_RED } from '../assets/constants.js';
 const FormulaMissingWarning = (props) => {
 
     const formula = props.formula;
-    console.log(formula);
 
     const missing = [];
     if (typeof(formula.cup.calories) != 'number') {
